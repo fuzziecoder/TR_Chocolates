@@ -1,0 +1,132 @@
+{%- liquid
+  assign main_menu = linklists[section.settings.menu] | default: linklists.main-menu
+-%}
+
+<header class="site-header-wrapper{% if section.settings.enable_sticky %} is-sticky{% endif %}" data-section-id="{{ section.id }}">
+  <div class="page-width site-header">
+    {%- comment -%} Mobile Hamburger Trigger {%- endcomment -%}
+    <button type="button" class="mobile-menu-trigger" data-action="open-mobile-menu" aria-label="{{ 'general.menu' | t }}">
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    {%- comment -%} Brand Logo / Text {%- endcomment -%}
+    <div class="site-header__logo-container">
+      <a href="{{ routes.root_url }}" class="site-header__logo-link">
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 300
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              alt: section.settings.logo.alt | default: shop.name | escape,
+              style: 'max-width: ' | append: section.settings.logo_width | append: 'px;'
+          }}
+        {%- else -%}
+          <span class="site-header__logo-text">{{ shop.name | default: 'TR Artisan' }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    {%- comment -%} Desktop Navigation Menu {%- endcomment -%}
+    <nav class="site-nav" role="navigation" aria-label="Main Navigation">
+      {%- if main_menu.links.size > 0 -%}
+        {%- for link in main_menu.links -%}
+          {%- assign is_shop = false -%}
+          {%- assign downcase_title = link.title | downcase -%}
+          {%- if downcase_title contains 'shop' or link.links.size > 0 -%}
+            {%- assign is_shop = true -%}
+          {%- endif -%}
+
+          <li class="site-nav__item{% if is_shop %} site-nav__item--mega has-dropdown{% endif %}">
+            <a
+              href="{{ link.url }}"
+              class="site-nav__link{% if link.current %} is-active{% endif %}"
+              {% if is_shop %}aria-expanded="false" aria-haspopup="true"{% endif %}
+            >
+              {{ link.title }}
+              {%- if is_shop -%}
+                {% render 'icon', name: 'chevron-down' %}
+              {%- endif -%}
+            </a>
+
+            {%- if is_shop -%}
+              {% render 'header-mega-menu' %}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Fallback clean navigation when menu is empty {%- endcomment -%}
+        <li class="site-nav__item">
+          <a href="{{ routes.root_url }}" class="site-nav__link is-active">{{ 'general.breadcrumbs.home' | t }}</a>
+        </li>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/collections" class="site-nav__link">
+            Shop
+            {% render 'icon', name: 'chevron-down' %}
+          </a>
+          {% render 'header-mega-menu' %}
+        </li>
+        <li class="site-nav__item">
+          <a href="/pages/our-story" class="site-nav__link">Our Story</a>
+        </li>
+        <li class="site-nav__item">
+          <a href="/pages/contact" class="site-nav__link">Contact</a>
+        </li>
+      {%- endif -%}
+    </nav>
+
+    {%- comment -%} Header Utilities: Search, Account, Cart {%- endcomment -%}
+    <div class="site-header__utils">
+      <a href="{{ routes.search_url }}" class="header-icon-btn" aria-label="{{ 'general.search' | t }}">
+        {% render 'icon', name: 'search' %}
+      </a>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="header-icon-btn" aria-label="{{ 'header.account' | t }}">
+          {% render 'icon', name: 'account' %}
+        </a>
+      {%- endif -%}
+
+      <a href="{{ routes.cart_url }}" class="header-icon-btn" aria-label="{{ 'header.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="header-cart-badge" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "default": 160,
+      "unit": "px",
+      "label": "Desktop Logo Width"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable Sticky Header",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

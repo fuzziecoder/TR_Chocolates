@@ -1,0 +1,52 @@
+{% comment %}
+  Renders a product's price, including regular, compare-at, and unit pricing.
+  Accepts:
+  - product: {Object} Shopify Product object
+  - use_variant: {Boolean} Renders selected or first available variant's price instead of product min price (optional)
+
+  Usage:
+  {% render 'price', product: product %}
+{% endcomment %}
+
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign available = target.available | default: false
+  assign on_sale = false
+
+  if compare_at_price > price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="price-wrapper" data-price-wrapper>
+  {%- if on_sale -%}
+    <span class="price price--sale" aria-label="{{ 'products.product.sale_price' | t }}">
+      {{ price | money }}
+    </span>
+    <span class="price price--compare" aria-label="{{ 'products.product.regular_price' | t }}">
+      {{ compare_at_price | money }}
+    </span>
+  {%- else -%}
+    <span class="price price--regular" aria-label="{{ 'products.product.regular_price' | t }}">
+      {{ price | money }}
+    </span>
+  {%- endif -%}
+
+  {%- if target.unit_price_measurement -%}
+    <span class="unit-price" style="font-size: 0.75rem; color: var(--color-text-secondary);">
+      <span>{{ target.unit_price | money }}</span>
+      <span aria-hidden="true">/</span>
+      {%- if target.unit_price_measurement.reference_value != 1 -%}
+        {{ target.unit_price_measurement.reference_value }}
+      {%- endif -%}
+      {{ target.unit_price_measurement.reference_unit }}
+    </span>
+  {%- endif -%}
+</div>

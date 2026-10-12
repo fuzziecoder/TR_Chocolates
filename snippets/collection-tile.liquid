@@ -1,0 +1,50 @@
+{% comment %}
+  Renders an artisan collection tile.
+  Accepts:
+  - collection: {Object} Shopify Collection object
+  - custom_title: {String} Override title if specified
+  - custom_image: {Object} Override image if specified
+
+  Usage:
+  {% render 'collection-tile', collection: collection %}
+{% endcomment %}
+
+{%- liquid
+  assign title = custom_title | default: collection.title
+  assign image = custom_image | default: collection.featured_image
+  assign url = collection.url | default: '#'
+-%}
+
+<a href="{{ url }}" class="collection-tile" aria-label="{{ title | escape }}">
+  <div class="collection-tile__media-container">
+    {%- if image != blank -%}
+      {{
+        image
+        | image_url: width: 600
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 1200px) 16vw, (min-width: 768px) 33vw, 50vw',
+          widths: '200, 300, 400, 600',
+          alt: image.alt | default: title | escape
+      }}
+    {%- else -%}
+      <div class="collection-tile__placeholder-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m4.93 4.93 4.24 4.24"/>
+          <path d="m14.83 9.17 4.24-4.24"/>
+          <path d="m14.83 14.83 4.24 4.24"/>
+          <path d="m9.17 14.83-4.24 4.24"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="collection-tile__info">
+    <span class="collection-tile__title">{{ title }}</span>
+    <span class="collection-tile__arrow" aria-hidden="true">
+      {% render 'icon', name: 'arrow-right' %}
+    </span>
+  </div>
+</a>

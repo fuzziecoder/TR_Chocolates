@@ -1,0 +1,53 @@
+{%- if section.settings.show_announcement and section.settings.text != blank -%}
+  <aside
+    class="announcement-bar"
+    role="region"
+    aria-label="Announcement"
+    style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};"
+  >
+    <div class="page-width">
+      {%- if section.settings.link != blank -%}
+        <a href="{{ section.settings.link }}">{{ section.settings.text | escape }}</a>
+      {%- else -%}
+        <span>{{ section.settings.text | escape }}</span>
+      {%- endif -%}
+    </div>
+  </aside>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Small-batch artisan chocolate & traditional herbal care handcrafted with devotion."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#24150E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#F8F5EE"
+    }
+  ]
+}
+{% endschema %}

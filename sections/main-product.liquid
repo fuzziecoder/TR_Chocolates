@@ -1,0 +1,223 @@
+<div class="page-width section-spacing" data-section-id="{{ section.id }}">
+  {% render 'breadcrumbs' %}
+
+  <div class="product-detail-grid">
+    {%- comment -%} Product Media Gallery {%- endcomment -%}
+    <div class="product-gallery" data-product-gallery>
+      <div class="product-gallery__main">
+        {%- if product.featured_media != blank -%}
+          {{
+            product.featured_media
+            | image_url: width: 1000
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(min-width: 992px) 50vw, 100vw',
+              widths: '400, 600, 800, 1000',
+              alt: product.featured_media.alt | default: product.title | escape,
+              data-gallery-main-img: ''
+          }}
+        {%- else -%}
+          <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #ECE3D4; min-height: 400px;">
+            {% render 'icon', name: 'cart' %}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="product-gallery__thumbs" role="region" aria-label="Product Media Thumbnails">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="product-gallery__thumb-btn{% if forloop.first %} is-active{% endif %}"
+              data-gallery-thumb
+              data-image-src="{{ media | image_url: width: 1000 }}"
+              data-image-alt="{{ media.alt | default: product.title | escape }}"
+              aria-label="View media {{ forloop.index }}"
+            >
+              {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: media.alt | escape }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product Information & Purchase Form {%- endcomment -%}
+    <div class="product-info-panel">
+      {%- if section.settings.show_vendor and product.vendor != blank -%}
+        <span class="product-vendor-tag">{{ product.vendor }}</span>
+      {%- endif -%}
+
+      <h1 class="product-title">{{ product.title }}</h1>
+
+      <div class="product-price-box">
+        {% render 'price', product: product, use_variant: true %}
+      </div>
+
+      {%- form 'product', product, class: 'product-form', data-product-form: '' -%}
+        {%- comment -%} Hidden JSON for client-side variant changes {%- endcomment -%}
+        <script type="application/json" data-product-json>
+          {{ product | json }}
+        </script>
+
+        {%- comment -%} Master Variant Select (hidden or fallback) {%- endcomment -%}
+        <select name="id" data-master-variant-select style="display: none;">
+          {%- for variant in product.variants -%}
+            <option
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+              {% unless variant.available %}disabled="disabled"{% endunless %}
+            >
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        {%- comment -%} Variant Option Swatches {%- endcomment -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="variant-picker-section">
+              <div class="variant-option-name">{{ option.name }}:</div>
+              <div class="variant-swatches">
+                {%- for value in option.values -%}
+                  <button
+                    type="button"
+                    class="variant-radio-btn{% if option.selected_value == value %} is-selected{% endif %}"
+                    data-option-index="{{ option.position | minus: 1 }}"
+                    data-option-value="{{ value | escape }}"
+                  >
+                    {{ value }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        {%- comment -%} Quantity Selector {%- endcomment -%}
+        <div>
+          <label for="ProductQuantity-{{ section.id }}" style="display: block; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;">
+            {{ 'products.product.quantity' | t }}:
+          </label>
+          <div class="quantity-stepper">
+            <button type="button" class="quantity-btn" data-quantity-minus aria-label="{{ 'products.product.quantity_decrease' | t }}">&minus;</button>
+            <input
+              type="number"
+              id="ProductQuantity-{{ section.id }}"
+              name="quantity"
+              value="1"
+              min="1"
+              class="quantity-input"
+              aria-label="{{ 'products.product.quantity' | t }}"
+            >
+            <button type="button" class="quantity-btn" data-quantity-plus aria-label="{{ 'products.product.quantity_increase' | t }}">&plus;</button>
+          </div>
+        </div>
+
+        {%- comment -%} Add to Cart Button {%- endcomment -%}
+        <div style="margin-top: 1rem; margin-bottom: 2rem;">
+          <button
+            type="submit"
+            name="add"
+            class="btn btn--primary btn--full"
+            style="padding: 1.1rem;"
+            {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+          >
+            {%- if product.selected_or_first_available_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- comment -%} Collapsible Details Accordions {%- endcomment -%}
+      <div class="product-accordions" style="border-top: 2px solid var(--color-borders); margin-top: 1.5rem;">
+        {%- if product.description != blank -%}
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="true" aria-controls="Accordion-desc">
+              <span>Overview</span>
+              {% render 'icon', name: 'chevron-down' %}
+            </button>
+            <div id="Accordion-desc" class="accordion-content is-open">
+              {{ product.description }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.ingredients_text != blank -%}
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="Accordion-ingredients">
+              <span>{{ 'products.product.ingredients' | t }}</span>
+              {% render 'icon', name: 'chevron-down' %}
+            </button>
+            <div id="Accordion-ingredients" class="accordion-content">
+              {{ section.settings.ingredients_text }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.care_text != blank -%}
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="Accordion-care">
+              <span>{{ 'products.product.care_instructions' | t }}</span>
+              {% render 'icon', name: 'chevron-down' %}
+            </button>
+            <div id="Accordion-care" class="accordion-content">
+              {{ section.settings.care_text }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.shipping_text != blank -%}
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="Accordion-shipping">
+              <span>{{ 'products.product.shipping_returns' | t }}</span>
+              {% render 'icon', name: 'chevron-down' %}
+            </button>
+            <div id="Accordion-shipping" class="accordion-content">
+              {{ section.settings.shipping_text }}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show Vendor",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Collapsible Accordions"
+    },
+    {
+      "type": "richtext",
+      "id": "ingredients_text",
+      "label": "Ingredients & Origins Note (Optional)",
+      "info": "Display only merchant-supplied ingredient origins."
+    },
+    {
+      "type": "richtext",
+      "id": "care_text",
+      "label": "Craft & Storage Notes (Optional)",
+      "info": "Storage advice (e.g. keep cool and dry away from sunlight)."
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Delivery & Handcrafted Care (Optional)",
+      "default": "<p>Shipped in temperature-conscious, protective packaging to ensure your handcrafted products arrive in immaculate condition.</p>"
+    }
+  ]
+}
+{% endschema %}

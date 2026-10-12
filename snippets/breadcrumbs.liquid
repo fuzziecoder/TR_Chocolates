@@ -1,0 +1,24 @@
+{% comment %}
+  Renders breadcrumbs trail for collection, product, and page templates.
+{% endcomment %}
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+  <span aria-hidden="true">&rsaquo;</span>
+
+  {%- if template.name == 'collection' and collection.handle -%}
+    <span>{{ collection.title }}</span>
+  {%- elsif template.name == 'product' -%}
+    {%- if collection.url -%}
+      <a href="{{ collection.url }}">{{ collection.title }}</a>
+      <span aria-hidden="true">&rsaquo;</span>
+    {%- endif -%}
+    <span>{{ product.title }}</span>
+  {%- elsif template.name == 'page' -%}
+    <span>{{ page.title }}</span>
+  {%- elsif template.name == 'search' -%}
+    <span>{{ 'general.search' | t }}</span>
+  {%- elsif template.name == 'cart' -%}
+    <span>{{ 'cart.title' | t }}</span>
+  {%- endif -%}
+</nav>

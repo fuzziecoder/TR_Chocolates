@@ -1,0 +1,99 @@
+{% comment %}
+  Renders the visual Mega Menu dropdown underneath the Header
+  Matching the artisan showcase pattern with top sub-links and 6 visual category cards.
+{% endcomment %}
+
+<div class="mega-menu-drawer" id="ShopMegaMenu" role="region" aria-label="Shop Menu">
+  <div class="page-width mega-menu-inner">
+    {%- comment -%} Top Featured Sublinks matching reference {%- endcomment -%}
+    <div class="mega-menu-sublinks">
+      <a href="/collections/chocolate" class="mega-menu-sublink">Fall Collection</a>
+      <a href="/collections/chocolate" class="mega-menu-sublink">Best Sellers</a>
+      <a href="/collections/chocolate" class="mega-menu-sublink">New Arrivals</a>
+      <a href="/collections/pantry" class="mega-menu-sublink">Limited Batch</a>
+      <a href="/collections/pantry" class="mega-menu-sublink">Subscribe</a>
+      <a href="/collections" class="mega-menu-sublink">Shop All</a>
+    </div>
+
+    {%- comment -%} 6 Visual Category Cards {%- endcomment -%}
+    <div class="mega-menu-grid">
+      {%- comment -%} Collection 1: Chocolate {%- endcomment -%}
+      {%- assign col1 = collections['chocolate'] -%}
+      <a href="{{ col1.url | default: '/collections/chocolate' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col1.image != blank -%}
+            {{ col1.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Chocolate' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Chocolate</span>
+      </a>
+
+      {%- comment -%} Collection 2: Pantry {%- endcomment -%}
+      {%- assign col2 = collections['pantry'] -%}
+      <a href="{{ col2.url | default: '/collections/pantry' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col2.image != blank -%}
+            {{ col2.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Pantry' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><path d="M6 2h12v4H6zM4 6h16v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM9 11v6M15 11v6"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Pantry</span>
+      </a>
+
+      {%- comment -%} Collection 3: Herbal & Traditional Care {%- endcomment -%}
+      {%- assign col3 = collections['herbal-traditional-care'] -%}
+      <a href="{{ col3.url | default: '/collections/herbal-traditional-care' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col3.image != blank -%}
+            {{ col3.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Herbal & Traditional Care' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Herbal & Traditional Care</span>
+      </a>
+
+      {%- comment -%} Collection 4: Bath & Body {%- endcomment -%}
+      {%- assign col4 = collections['bath-body'] -%}
+      <a href="{{ col4.url | default: '/collections/bath-body' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col4.image != blank -%}
+            {{ col4.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Bath & Body' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><path d="M9 6h6a3 3 0 0 1 3 3v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a3 3 0 0 1 3-3Z"/><path d="M10 2h4M12 2v4"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Bath & Body</span>
+      </a>
+
+      {%- comment -%} Collection 5: Face Care {%- endcomment -%}
+      {%- assign col5 = collections['face-care'] -%}
+      <a href="{{ col5.url | default: '/collections/face-care' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col5.image != blank -%}
+            {{ col5.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Face Care' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Face Care</span>
+      </a>
+
+      {%- comment -%} Collection 6: Hair Care {%- endcomment -%}
+      {%- assign col6 = collections['hair-care'] -%}
+      <a href="{{ col6.url | default: '/collections/hair-care' }}" class="mega-menu-card">
+        <div class="mega-menu-card__image-box">
+          {%- if col6.image != blank -%}
+            {{ col6.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Hair Care' }}
+          {%- else -%}
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C86A58" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="mega-menu-card__title">Hair Care</span>
+      </a>
+    </div>
+  </div>
+</div>

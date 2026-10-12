@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "preview": "node preview-server.js",
+    "start": "node preview-server.js"
+  },
+  "devDependencies": {
+    "express": "^5.3.0",
+    "liquidjs": "^10.30.0"
+  }
+}
