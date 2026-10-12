@@ -1,0 +1,70 @@
+{% comment %}
+  Renders the "Discover" Mega Menu dropdown — TR Artisan Reserve
+  Layout (matches reference): 
+    Left panel  → Text nav links (2-col) + highlighted CTA block
+    Right panel → 2 feature image cards with title + description
+{% endcomment %}
+
+<div class="discover-menu-drawer" id="DiscoverMegaMenu" role="region" aria-label="Discover Menu">
+  <div class="page-width discover-menu-inner">
+
+    {%- comment -%} LEFT PANEL — links + CTA {%- endcomment -%}
+    <div class="discover-menu-left">
+
+      {%- comment -%} 2-column link grid {%- endcomment -%}
+      <div class="discover-menu-links">
+        <div class="discover-menu-links__col">
+          <a href="/pages/our-story" class="discover-menu-link">Our Story</a>
+          <a href="/pages/artisan-craft" class="discover-menu-link">Artisan Craft</a>
+          <a href="/pages/sourcing" class="discover-menu-link">Ethical Sourcing</a>
+        </div>
+        <div class="discover-menu-links__col">
+          <a href="/pages/faq" class="discover-menu-link">Support</a>
+          <a href="/pages/loyalty" class="discover-menu-link">Loyalty Rewards</a>
+          <a href="/pages/gift-guide" class="discover-menu-link">Gift Guide</a>
+        </div>
+      </div>
+
+      {%- comment -%} CTA Highlight Block {%- endcomment -%}
+      <div class="discover-menu-cta">
+        <p class="discover-menu-cta__label">Shop Wholesale</p>
+        <a href="/pages/wholesale" class="discover-menu-cta__btn">Learn More</a>
+      </div>
+
+    </div>
+
+    {%- comment -%} RIGHT PANEL — 2 feature cards {%- endcomment -%}
+    <div class="discover-menu-cards">
+
+      <a href="/pages/gifting" class="discover-feature-card">
+        <div class="discover-feature-card__img">
+          <img
+            src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=480&auto=format&fit=crop&q=80"
+            alt="Corporate Gifting"
+            loading="lazy"
+          >
+        </div>
+        <div class="discover-feature-card__body">
+          <strong class="discover-feature-card__title">Corporate Gifting</strong>
+          <p class="discover-feature-card__desc">Customizable gifts for holidays, events, partners and celebrations.</p>
+        </div>
+      </a>
+
+      <a href="/pages/wholesale" class="discover-feature-card">
+        <div class="discover-feature-card__img">
+          <img
+            src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=480&auto=format&fit=crop&q=80"
+            alt="Wholesale"
+            loading="lazy"
+          >
+        </div>
+        <div class="discover-feature-card__body">
+          <strong class="discover-feature-card__title">Wholesale</strong>
+          <p class="discover-feature-card__desc">Carry TR Artisan products at your store or café.</p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</div>

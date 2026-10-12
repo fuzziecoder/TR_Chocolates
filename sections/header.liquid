@@ -33,25 +33,36 @@
       {%- if main_menu.links.size > 0 -%}
         {%- for link in main_menu.links -%}
           {%- assign is_shop = false -%}
+          {%- assign is_discover = false -%}
           {%- assign downcase_title = link.title | downcase -%}
           {%- if downcase_title contains 'shop' or link.links.size > 0 -%}
             {%- assign is_shop = true -%}
           {%- endif -%}
+          {%- if downcase_title contains 'discover' -%}
+            {%- assign is_discover = true -%}
+          {%- endif -%}
 
-          <li class="site-nav__item{% if is_shop %} site-nav__item--mega has-dropdown{% endif %}">
+          {%- assign has_dropdown = false -%}
+          {%- if is_shop or is_discover -%}
+            {%- assign has_dropdown = true -%}
+          {%- endif -%}
+
+          <li class="site-nav__item{% if has_dropdown %} site-nav__item--mega has-dropdown{% endif %}">
             <a
               href="{{ link.url }}"
-              class="site-nav__link{% if link.current %} is-active{% endif %}"
-              {% if is_shop %}aria-expanded="false" aria-haspopup="true"{% endif %}
+              class="site-nav__link{% if link.current %} is-active{% endif %}{% if is_discover %} discover-trigger{% endif %}"
+              {% if has_dropdown %}aria-expanded="false" aria-haspopup="true"{% endif %}
             >
               {{ link.title }}
-              {%- if is_shop -%}
+              {%- if has_dropdown -%}
                 {% render 'icon', name: 'chevron-down' %}
               {%- endif -%}
             </a>
 
             {%- if is_shop -%}
               {% render 'header-mega-menu' %}
+            {%- elsif is_discover -%}
+              {% render 'discover-mega-menu' %}
             {%- endif -%}
           </li>
         {%- endfor -%}
@@ -61,17 +72,21 @@
           <a href="{{ routes.root_url }}" class="site-nav__link is-active">{{ 'general.breadcrumbs.home' | t }}</a>
         </li>
         <li class="site-nav__item site-nav__item--mega has-dropdown">
-          <a href="/collections" class="site-nav__link">
+          <a href="/collections" class="site-nav__link" aria-expanded="false" aria-haspopup="true">
             Shop
             {% render 'icon', name: 'chevron-down' %}
           </a>
           {% render 'header-mega-menu' %}
         </li>
-        <li class="site-nav__item">
-          <a href="/pages/our-story" class="site-nav__link">Our Story</a>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/pages/discover" class="site-nav__link discover-trigger" aria-expanded="false" aria-haspopup="true">
+            Discover
+            {% render 'icon', name: 'chevron-down' %}
+          </a>
+          {% render 'discover-mega-menu' %}
         </li>
         <li class="site-nav__item">
-          <a href="/pages/contact" class="site-nav__link">Contact</a>
+          <a href="/pages/contact" class="site-nav__link">Visit</a>
         </li>
       {%- endif -%}
     </nav>

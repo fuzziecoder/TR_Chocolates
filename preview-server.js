@@ -299,12 +299,65 @@ function renderLayout(title, content) {
             </div>
           </div>
         </li>
-        <li class="site-nav__item">
-          <a href="/pages/our-story" class="site-nav__link">Discover</a>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/pages/discover" class="site-nav__link discover-trigger" aria-expanded="false" aria-haspopup="true">
+            Discover
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+
+          <!-- Discover Mega Menu Drawer -->
+          <div class="discover-menu-drawer" id="DiscoverMegaMenu">
+            <div class="page-width discover-menu-inner">
+
+              <!-- LEFT PANEL -->
+              <div class="discover-menu-left">
+                <div class="discover-menu-links">
+                  <div class="discover-menu-links__col">
+                    <a href="/pages/our-story" class="discover-menu-link">Our Story</a>
+                    <a href="/pages/artisan-craft" class="discover-menu-link">Artisan Craft</a>
+                    <a href="/pages/sourcing" class="discover-menu-link">Ethical Sourcing</a>
+                  </div>
+                  <div class="discover-menu-links__col">
+                    <a href="/pages/faq" class="discover-menu-link">Support</a>
+                    <a href="/pages/loyalty" class="discover-menu-link">Loyalty Rewards</a>
+                    <a href="/pages/gift-guide" class="discover-menu-link">Gift Guide</a>
+                  </div>
+                </div>
+                <div class="discover-menu-cta">
+                  <p class="discover-menu-cta__label">Shop Wholesale</p>
+                  <a href="/pages/wholesale" class="discover-menu-cta__btn">Learn More</a>
+                </div>
+              </div>
+
+              <!-- RIGHT PANEL — 2 feature cards -->
+              <div class="discover-menu-cards">
+                <a href="/pages/gifting" class="discover-feature-card">
+                  <div class="discover-feature-card__img">
+                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=480&auto=format&fit=crop&q=80" alt="Corporate Gifting" loading="lazy">
+                  </div>
+                  <div class="discover-feature-card__body">
+                    <strong class="discover-feature-card__title">Corporate Gifting</strong>
+                    <p class="discover-feature-card__desc">Customizable gifts for holidays, events, partners and celebrations.</p>
+                  </div>
+                </a>
+                <a href="/pages/wholesale" class="discover-feature-card">
+                  <div class="discover-feature-card__img">
+                    <img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=480&auto=format&fit=crop&q=80" alt="Wholesale" loading="lazy">
+                  </div>
+                  <div class="discover-feature-card__body">
+                    <strong class="discover-feature-card__title">Wholesale</strong>
+                    <p class="discover-feature-card__desc">Carry TR Artisan products at your store or café.</p>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
         </li>
         <li class="site-nav__item">
           <a href="/pages/contact" class="site-nav__link">Visit</a>
         </li>
+
       </nav>
 
       <div class="site-header__utils">
