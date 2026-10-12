@@ -220,7 +220,29 @@ function renderLayout(title, content) {
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme.css">
   <script src="/assets/theme.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mega menu JS hover (ensures it works even if CSS :hover has specificity issues)
+      document.querySelectorAll('.site-nav__item--mega').forEach(function(item) {
+        var drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer');
+        if (!drawer) return;
+        var timer;
+        item.addEventListener('mouseenter', function() {
+          clearTimeout(timer);
+          drawer.style.display = 'block';
+        });
+        item.addEventListener('mouseleave', function() {
+          timer = setTimeout(function() { drawer.style.display = ''; }, 120);
+        });
+        drawer.addEventListener('mouseenter', function() { clearTimeout(timer); });
+        drawer.addEventListener('mouseleave', function() {
+          timer = setTimeout(function() { drawer.style.display = ''; }, 120);
+        });
+      });
+    });
+  </script>
 </head>
+
 <body>
   <!-- Site Header -->
   <header class="site-header-wrapper is-sticky">
