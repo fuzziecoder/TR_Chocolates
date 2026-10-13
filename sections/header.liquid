@@ -54,16 +54,19 @@
           {%- if downcase_title contains 'visit' -%}
             {%- assign is_visit = true -%}
           {%- endif -%}
+          {%- if downcase_title contains 'contact' -%}
+            {%- assign is_contact = true -%}
+          {%- endif -%}
 
           {%- assign has_dropdown = false -%}
-          {%- if is_shop or is_discover or is_visit -%}
+          {%- if is_shop or is_discover or is_visit or is_contact -%}
             {%- assign has_dropdown = true -%}
           {%- endif -%}
 
           <li class="site-nav__item{% if has_dropdown %} site-nav__item--mega has-dropdown{% endif %}">
             <a
               href="{{ link.url }}"
-              class="site-nav__link{% if link.current %} is-active{% endif %}{% if is_discover %} discover-trigger{% endif %}{% if is_visit %} visit-trigger{% endif %}"
+              class="site-nav__link{% if link.current %} is-active{% endif %}"
               {% if has_dropdown %}aria-expanded="false" aria-haspopup="true"{% endif %}
             >
               {{ link.title }}
@@ -78,6 +81,8 @@
               {% render 'discover-mega-menu' %}
             {%- elsif is_visit -%}
               {% render 'visit-mega-menu' %}
+            {%- elsif is_contact -%}
+              {% render 'contact-mega-menu' %}
             {%- endif -%}
           </li>
         {%- endfor -%}
@@ -94,18 +99,25 @@
           {% render 'header-mega-menu' %}
         </li>
         <li class="site-nav__item site-nav__item--mega has-dropdown">
-          <a href="/pages/discover" class="site-nav__link discover-trigger" aria-expanded="false" aria-haspopup="true">
+          <a href="/pages/our-story" class="site-nav__link" aria-expanded="false" aria-haspopup="true">
             Discover
             {% render 'icon', name: 'chevron-down' %}
           </a>
           {% render 'discover-mega-menu' %}
         </li>
         <li class="site-nav__item site-nav__item--mega has-dropdown">
-          <a href="/pages/contact" class="site-nav__link visit-trigger" aria-expanded="false" aria-haspopup="true">
+          <a href="/pages/visit" class="site-nav__link" aria-expanded="false" aria-haspopup="true">
             Visit
             {% render 'icon', name: 'chevron-down' %}
           </a>
           {% render 'visit-mega-menu' %}
+        </li>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/pages/contact" class="site-nav__link" aria-expanded="false" aria-haspopup="true">
+            Contact
+            {% render 'icon', name: 'chevron-down' %}
+          </a>
+          {% render 'contact-mega-menu' %}
         </li>
       {%- endif -%}
     </nav>

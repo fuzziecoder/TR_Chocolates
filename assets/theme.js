@@ -14,83 +14,137 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   Header Mega Menu Hover Controller — with delay-based hover bridge
-   Prevents premature close when moving mouse from trigger → panel
+   Header Mega Menu Hover Controller — Fast switching, zero stickiness
+   Instant switch between items, graceful leave timeout, full accessibility
    ========================================================================== */
 function initMegaMenuHover() {
   const megaNavItems = document.querySelectorAll('.site-nav__item--mega');
   if (!megaNavItems.length) return;
 
   const headerWrapper = document.querySelector('.site-header-wrapper');
-  const CLOSE_DELAY = 300; // ms grace period when mouse leaves
+  const LEAVE_DELAY = 180; // ms grace period when cursor leaves header completely
+  let leaveTimer = null;
+  let activeItem = null;
 
-  megaNavItems.forEach(item => {
-    const drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
-    if (!drawer) return;
-
-    let closeTimer = null;
-
-    function openDrawer() {
-      // Cancel any pending close
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-
-      // Close all other open drawers first
-      megaNavItems.forEach(other => {
-        if (other === item) return;
-        const otherDrawer = other.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
-        if (otherDrawer) {
-          otherDrawer.classList.remove('is-open');
-          other.classList.remove('is-mega-active');
-        }
-      });
-
-      drawer.classList.add('is-open');
-      item.classList.add('is-mega-active');
-      if (headerWrapper) headerWrapper.classList.add('is-mega-open');
+  function closeAll() {
+    if (leaveTimer) {
+      clearTimeout(leaveTimer);
+      leaveTimer = null;
     }
-
-    function scheduleClose() {
-      if (closeTimer) clearTimeout(closeTimer);
-      closeTimer = setTimeout(() => {
-        drawer.classList.remove('is-open');
-        item.classList.remove('is-mega-active');
-        // Only remove header class if no drawer is open
-        const anyOpen = document.querySelector('.site-nav__item--mega .is-open');
-        if (!anyOpen && headerWrapper) headerWrapper.classList.remove('is-mega-open');
-      }, CLOSE_DELAY);
-    }
-
-    // Mouse events on the parent <li>
-    item.addEventListener('mouseenter', openDrawer);
-    item.addEventListener('mouseleave', scheduleClose);
-
-    // Mouse events directly on the drawer (belt-and-suspenders)
-    drawer.addEventListener('mouseenter', () => {
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    megaNavItems.forEach(item => {
+      item.classList.remove('is-mega-active');
+      const drawer = item.querySelector('[class*="-menu-drawer"]');
+      if (drawer) drawer.classList.remove('is-open');
+      const link = item.querySelector('.site-nav__link');
+      if (link) link.setAttribute('aria-expanded', 'false');
     });
-    drawer.addEventListener('mouseleave', scheduleClose);
+    if (headerWrapper) headerWrapper.classList.remove('is-mega-open');
+    activeItem = null;
+  }
 
-    // Keyboard: focus-within keeps drawer open, Escape closes
-    item.addEventListener('focusin', openDrawer);
-    item.addEventListener('focusout', (e) => {
-      // Only close if focus moved outside this item entirely
-      if (!item.contains(e.relatedTarget)) {
-        scheduleClose();
+  function openItem(item) {
+    if (leaveTimer) {
+      clearTimeout(leaveTimer);
+      leaveTimer = null;
+    }
+
+    if (activeItem === item) return;
+
+    // Instantly close any other open items
+    megaNavItems.forEach(other => {
+      if (other !== item) {
+        other.classList.remove('is-mega-active');
+        const otherDrawer = other.querySelector('[class*="-menu-drawer"]');
+        if (otherDrawer) otherDrawer.classList.remove('is-open');
+        const otherLink = other.querySelector('.site-nav__link');
+        if (otherLink) otherLink.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // Open target item
+    activeItem = item;
+    item.classList.add('is-mega-active');
+    const drawer = item.querySelector('[class*="-menu-drawer"]');
+    if (drawer) drawer.classList.add('is-open');
+    const link = item.querySelector('.site-nav__link');
+    if (link) link.setAttribute('aria-expanded', 'true');
+    if (headerWrapper) headerWrapper.classList.add('is-mega-open');
+  }
+
+  function scheduleLeave() {
+    if (leaveTimer) clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(() => {
+      closeAll();
+    }, LEAVE_DELAY);
+  }
+
+  megaNavItems.forEach(item => {
+    const drawer = item.querySelector('[class*="-menu-drawer"]');
+
+    // Hover enters: switch immediately
+    item.addEventListener('mouseenter', () => {
+      openItem(item);
+    });
+
+    // Hover leaves item
+    item.addEventListener('mouseleave', (e) => {
+      const nextTarget = e.relatedTarget;
+      // If moving into another mega item, don't schedule leave; the other item will open instantly
+      if (nextTarget && headerWrapper && headerWrapper.contains(nextTarget)) {
+        return;
+      }
+      scheduleLeave();
+    });
+
+    if (drawer) {
+      drawer.addEventListener('mouseenter', () => {
+        if (leaveTimer) {
+          clearTimeout(leaveTimer);
+          leaveTimer = null;
+        }
+      });
+      drawer.addEventListener('mouseleave', (e) => {
+        const nextTarget = e.relatedTarget;
+        if (nextTarget && headerWrapper && headerWrapper.contains(nextTarget)) {
+          return;
+        }
+        scheduleLeave();
+      });
+    }
+
+    // Keyboard support
+    item.addEventListener('focusin', () => openItem(item));
+    item.addEventListener('focusout', (e) => {
+      if (!item.contains(e.relatedTarget)) {
+        scheduleLeave();
+      }
+    });
+  });
+
+  // Mouse entering header cancels any scheduled leave
+  if (headerWrapper) {
+    headerWrapper.addEventListener('mouseenter', () => {
+      if (leaveTimer) {
+        clearTimeout(leaveTimer);
+        leaveTimer = null;
+      }
+    });
+    headerWrapper.addEventListener('mouseleave', () => {
+      scheduleLeave();
+    });
+  }
+
+  // Click outside closes any open mega menu immediately
+  document.addEventListener('click', (e) => {
+    if (!headerWrapper || !headerWrapper.contains(e.target)) {
+      closeAll();
+    }
   });
 
   // Global Escape key handler
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      megaNavItems.forEach(item => {
-        const drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
-        if (drawer) {
-          drawer.classList.remove('is-open');
-          item.classList.remove('is-mega-active');
-        }
-      });
-      if (headerWrapper) headerWrapper.classList.remove('is-mega-open');
+      closeAll();
     }
   });
 }
