@@ -1,5 +1,5 @@
 /**
- * TR Artisan Reserve - Theme JavaScript
+ * TR Homemade Chocolates - Theme JavaScript
  * Pure Vanilla JavaScript (ES6+), Zero external libraries, Accessible & Fast
  */
 
@@ -14,22 +14,84 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   Header Mega Menu Hover Controller
+   Header Mega Menu Hover Controller — with delay-based hover bridge
+   Prevents premature close when moving mouse from trigger → panel
    ========================================================================== */
 function initMegaMenuHover() {
-  const headerWrapper = document.querySelector('.site-header-wrapper');
   const megaNavItems = document.querySelectorAll('.site-nav__item--mega');
+  if (!megaNavItems.length) return;
 
-  if (!headerWrapper || !megaNavItems.length) return;
+  const headerWrapper = document.querySelector('.site-header-wrapper');
+  const CLOSE_DELAY = 300; // ms grace period when mouse leaves
 
   megaNavItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      headerWrapper.classList.add('is-mega-open');
-    });
+    const drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
+    if (!drawer) return;
 
-    item.addEventListener('mouseleave', () => {
-      headerWrapper.classList.remove('is-mega-open');
+    let closeTimer = null;
+
+    function openDrawer() {
+      // Cancel any pending close
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+
+      // Close all other open drawers first
+      megaNavItems.forEach(other => {
+        if (other === item) return;
+        const otherDrawer = other.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
+        if (otherDrawer) {
+          otherDrawer.classList.remove('is-open');
+          other.classList.remove('is-mega-active');
+        }
+      });
+
+      drawer.classList.add('is-open');
+      item.classList.add('is-mega-active');
+      if (headerWrapper) headerWrapper.classList.add('is-mega-open');
+    }
+
+    function scheduleClose() {
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        drawer.classList.remove('is-open');
+        item.classList.remove('is-mega-active');
+        // Only remove header class if no drawer is open
+        const anyOpen = document.querySelector('.site-nav__item--mega .is-open');
+        if (!anyOpen && headerWrapper) headerWrapper.classList.remove('is-mega-open');
+      }, CLOSE_DELAY);
+    }
+
+    // Mouse events on the parent <li>
+    item.addEventListener('mouseenter', openDrawer);
+    item.addEventListener('mouseleave', scheduleClose);
+
+    // Mouse events directly on the drawer (belt-and-suspenders)
+    drawer.addEventListener('mouseenter', () => {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
     });
+    drawer.addEventListener('mouseleave', scheduleClose);
+
+    // Keyboard: focus-within keeps drawer open, Escape closes
+    item.addEventListener('focusin', openDrawer);
+    item.addEventListener('focusout', (e) => {
+      // Only close if focus moved outside this item entirely
+      if (!item.contains(e.relatedTarget)) {
+        scheduleClose();
+      }
+    });
+  });
+
+  // Global Escape key handler
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      megaNavItems.forEach(item => {
+        const drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer, .visit-menu-drawer');
+        if (drawer) {
+          drawer.classList.remove('is-open');
+          item.classList.remove('is-mega-active');
+        }
+      });
+      if (headerWrapper) headerWrapper.classList.remove('is-mega-open');
+    }
   });
 }
 

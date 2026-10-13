@@ -1,11 +1,11 @@
 /* ==========================================================================
-   TR ARTISAN RESERVE - SHOPIFY ONLINE STORE 2.0 STYLESHEET
+   TR HOMEMADE CHOCOLATES - SHOPIFY ONLINE STORE 2.0 STYLESHEET
    Crafted with Semantic HTML, CSS Custom Properties & Responsive Fluid Scale
    ========================================================================== */
 
 :root {
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'DM Sans', 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body-scale: 1;
   --font-heading-scale: 1.05;
 
@@ -280,26 +280,30 @@ textarea {
 /* Hover/Active states matching reference chocolate bar header */
 .site-header-wrapper.is-mega-open,
 .site-header-wrapper:has(.site-nav__item--mega:hover),
-.site-header-wrapper:has(.site-nav__item--mega:focus-within) {
+.site-header-wrapper:has(.site-nav__item--mega:focus-within),
+.site-header-wrapper:has(.site-nav__item--mega.is-mega-active) {
   background-color: #4A2612;
   border-bottom-color: #4A2612;
 }
 
 .site-header-wrapper.is-mega-open .site-header__logo-text,
 .site-header-wrapper:has(.site-nav__item--mega:hover) .site-header__logo-text,
-.site-header-wrapper:has(.site-nav__item--mega:focus-within) .site-header__logo-text {
+.site-header-wrapper:has(.site-nav__item--mega:focus-within) .site-header__logo-text,
+.site-header-wrapper:has(.site-nav__item--mega.is-mega-active) .site-header__logo-text {
   color: #FFFFFF;
 }
 
 .site-header-wrapper.is-mega-open .header-icon-btn,
 .site-header-wrapper:has(.site-nav__item--mega:hover) .header-icon-btn,
-.site-header-wrapper:has(.site-nav__item--mega:focus-within) .header-icon-btn {
+.site-header-wrapper:has(.site-nav__item--mega:focus-within) .header-icon-btn,
+.site-header-wrapper:has(.site-nav__item--mega.is-mega-active) .header-icon-btn {
   color: #FFFFFF;
 }
 
 .site-header-wrapper.is-mega-open .site-nav__link,
 .site-header-wrapper:has(.site-nav__item--mega:hover) .site-nav__link,
-.site-header-wrapper:has(.site-nav__item--mega:focus-within) .site-nav__link {
+.site-header-wrapper:has(.site-nav__item--mega:focus-within) .site-nav__link,
+.site-header-wrapper:has(.site-nav__item--mega.is-mega-active) .site-nav__link {
   color: #FFFFFF;
 }
 
@@ -318,13 +322,57 @@ textarea {
   align-items: center;
 }
 
+.site-header__logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.site-header__logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform var(--transition-fast);
+}
+
+.site-header__logo-link:hover .site-header__logo-img {
+  transform: scale(1.05);
+}
+
 .site-header__logo-text {
   font-family: var(--font-heading);
-  font-size: 2.1rem;
+  font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   transition: color var(--transition-fast);
+}
+
+.footer-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.footer-brand-logo__img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.footer-brand-logo__text {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #F8F5EE;
 }
 
 /* Desktop Navigation */
@@ -369,6 +417,7 @@ textarea {
 /* Active "SHOP" button matching reference caramel box with drop shadow */
 .site-nav__item--mega:hover>.site-nav__link,
 .site-nav__item--mega.is-active>.site-nav__link,
+.site-nav__item--mega.is-mega-active>.site-nav__link,
 .site-header-wrapper.is-mega-open .site-nav__item--mega>.site-nav__link {
   background-color: #B68967 !important;
   color: #201108 !important;
@@ -459,9 +508,24 @@ textarea {
 
 .site-nav__item--mega:hover .mega-menu-drawer,
 .site-nav__item--mega:focus-within .mega-menu-drawer,
-.site-header-wrapper.is-mega-open .mega-menu-drawer {
+.site-header-wrapper.is-mega-open .mega-menu-drawer,
+.mega-menu-drawer.is-open {
   display: block;
   animation: fadeInDown 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover bridge — catches the mouse during the gap between nav link and drawer */
+.mega-menu-drawer::before,
+.discover-menu-drawer::before,
+.visit-menu-drawer::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: transparent;
+  z-index: 1;
 }
 
 @keyframes fadeInDown {
@@ -635,21 +699,6 @@ textarea {
   border-bottom: 1px solid rgba(36, 21, 14, 0.06);
 }
 
-/* ==========================================================================
-   INTERACTION-CONTROLLED HIDDEN COMPONENT / UTILITY SPECIFICATION
-   ========================================================================== */
-.mobile-nav-submenu,
-.theme-hidden-panel,
-.client-component-name {
-  box-sizing: border-box;
-  color: rgb(23, 28, 35);
-  font-family: "Sul Sans", ui-sans, sans-serif;
-  line-height: 24px;
-  width: auto;
-  height: auto;
-  border: 0 solid rgb(23, 28, 35);
-}
-
 .mobile-nav-submenu {
   list-style: none;
   padding-left: 1rem;
@@ -661,18 +710,6 @@ textarea {
 
 .mobile-nav-submenu.is-open {
   display: flex;
-}
-
-.theme-hidden-panel,
-.client-component-name {
-  display: none;
-}
-
-.theme-hidden-panel.is-open,
-.theme-hidden-panel.is-active,
-.client-component-name.is-open,
-.client-component-name.is-active {
-  display: block;
 }
 
 .mobile-nav-sublink {
@@ -809,109 +846,174 @@ textarea {
   font-size: 2.25rem;
 }
 
+/* Category Section 'Shop All' Pill Button */
+.category-shop-all-btn {
+  background-color: #E5B299;
+  color: #171C23;
+  border: 2px solid #171C23;
+  box-shadow: 3.5px 3.5px 0px #171C23;
+  border-radius: 4px;
+  padding: 0.75rem 2rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.category-shop-all-btn:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 5px 5px 0px #171C23;
+}
+
+/* Category Grid — 3 spacious columns */
 .collection-tiles-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 5rem; /* Generous clearance for floating overflowing packaging */
+  margin-bottom: 2.5rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 989px) {
   .collection-tiles-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4.5rem 1.5rem;
   }
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 640px) {
   .collection-tiles-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr;
+    gap: 5rem;
   }
 }
 
+/* Category Card with 44px generous curves matching reference */
 .collection-tile {
-  background-color: #FFFFFF;
-  border-radius: var(--card-radius);
-  border: 2px solid var(--color-borders);
-  box-shadow: var(--shadow-artisan);
-  overflow: hidden;
+  border-radius: 44px;
+  min-height: 380px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  justify-content: space-between;
   position: relative;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  overflow: visible; /* Packaging bursts above the card */
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
+}
+
+/* Exact card colors from reference:
+   1: Pure White (#FFFFFF)
+   2: Bubblegum Pink (#F7A1B5)
+   3: Terracotta / Clay (#C88574)
+*/
+.collection-tile:nth-child(3n+1) {
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 28px rgba(23, 28, 35, 0.05);
+}
+
+.collection-tile:nth-child(3n+2) {
+  background-color: #F7A1B5;
+}
+
+.collection-tile:nth-child(3n+3) {
+  background-color: #C88574;
 }
 
 .collection-tile:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-artisan-lg);
+  transform: translateY(-6px);
 }
 
+/* Floating packaging image extending above the top edge of the card */
 .collection-tile__media-container {
-  aspect-ratio: 1 / 1;
-  background-color: #F3EEE7;
-  overflow: hidden;
   position: relative;
+  width: 100%;
+  height: 250px;
+  margin-top: -65px; /* Floats over the top curve */
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 1rem;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
 }
 
 .collection-tile__media-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: calc(var(--card-radius) - 6px);
-  transition: transform var(--transition-normal);
+  max-height: 280px;
+  max-width: 82%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(23, 28, 35, 0.2));
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), filter 0.32s ease;
+  border-radius: 0;
 }
 
 .collection-tile:hover .collection-tile__media-container img {
-  transform: scale(1.05);
+  transform: translateY(-10px) scale(1.04);
+  filter: drop-shadow(0 20px 30px rgba(23, 28, 35, 0.28));
 }
 
 .collection-tile__placeholder-icon {
-  width: 48px;
-  height: 48px;
-  color: var(--color-accent);
-  opacity: 0.8;
+  width: 60px;
+  height: 60px;
+  color: #171C23;
+  opacity: 0.6;
 }
 
+/* Card bottom row: bold condensed typography & circular arrow button */
 .collection-tile__info {
-  padding: 1.25rem 1rem 1rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  border-top: 2px solid var(--color-borders);
-  background-color: #FFFFFF;
+  padding: 1.25rem 2rem 2.25rem;
+  background: transparent;
+  border-top: none;
+  width: 100%;
+  gap: 1rem;
+  box-sizing: border-box;
 }
 
 .collection-tile__title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
+  font-family: 'Oswald', 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  font-size: 2.85rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-text-primary);
-  line-height: 1.2;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #171C23;
+  display: block;
 }
 
+/* Round arrow button matching reference with solid 2px border and offset drop shadow */
 .collection-tile__arrow {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background-color: var(--color-bg-main);
-  border: 1.5px solid var(--color-borders);
+  background-color: #F8F5EE;
+  border: 2px solid #171C23;
+  box-shadow: 2.5px 2.5px 0px #171C23;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  color: #171C23;
+  margin-bottom: 0.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .collection-tile:hover .collection-tile__arrow {
-  background-color: var(--color-accent);
-  color: #fff;
-  transform: translateX(2px);
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4px 4px 0px #171C23;
+  background-color: #FFFFFF;
+  color: #171C23;
 }
 
 /* ==========================================================================
@@ -1874,7 +1976,8 @@ textarea {
 }
 
 .site-nav__item--mega:hover .discover-menu-drawer,
-.site-nav__item--mega:focus-within .discover-menu-drawer {
+.site-nav__item--mega:focus-within .discover-menu-drawer,
+.discover-menu-drawer.is-open {
   display: block;
 }
 
@@ -2063,7 +2166,8 @@ textarea {
 
 /* Show on hover of parent li */
 .site-nav__item--mega:hover .discover-menu-drawer,
-.site-nav__item--mega:focus-within .discover-menu-drawer {
+.site-nav__item--mega:focus-within .discover-menu-drawer,
+.discover-menu-drawer.is-open {
   display: block;
 }
 
@@ -2238,6 +2342,7 @@ textarea {
     opacity: 0;
     transform: translateX(-50%) translateY(-6px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -2246,7 +2351,8 @@ textarea {
 
 .site-nav__item--mega:hover .visit-menu-drawer,
 .site-nav__item--mega:focus-within .visit-menu-drawer,
-.site-nav__item.is-visit-open .visit-menu-drawer {
+.site-nav__item.is-visit-open .visit-menu-drawer,
+.visit-menu-drawer.is-open {
   display: block;
 }
 

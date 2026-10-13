@@ -6,9 +6,18 @@
 
 <div class="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation" aria-hidden="true">
   <div class="mobile-nav-header">
-    <span class="site-header__logo-text" style="font-size: 1.4rem;">
-      {{ shop.name | default: 'TR Artisan' }}
-    </span>
+    <div style="display: flex; align-items: center; gap: 0.65rem;">
+      <img
+        src="{{ 'tr-logo.png' | asset_url }}"
+        alt="{{ shop.name | default: 'TR Homemade Chocolates' }}"
+        class="site-header__logo-img"
+        style="height: 40px; width: 40px;"
+        loading="lazy"
+      >
+      <span class="site-header__logo-text" style="font-size: 1.25rem;">
+        {{ shop.name | default: 'TR Homemade Chocolates' }}
+      </span>
+    </div>
     <button type="button" class="header-icon-btn" data-action="close-mobile-menu" aria-label="{{ 'general.close' | t }}">
       {% render 'icon', name: 'close' %}
     </button>
