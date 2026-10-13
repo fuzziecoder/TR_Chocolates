@@ -16,7 +16,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 // Mock Store Data
 const mockData = {
   shop: {
-    name: "TR Homemade Chocolates"
+    name: "TR Homemade Chocolates "
   },
   collections: [
     {
@@ -40,7 +40,7 @@ const mockData = {
           id: 102,
           title: "Stone-Ground Vanilla Bean Chocolate",
           vendor: "TR Reserve",
-          price: 10.00,
+          price: 10.00, Homemade Chocolates
           compare_at_price: 10.00,
           available: true,
           image: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop&q=80",
@@ -214,7 +214,7 @@ function renderLayout(title, content) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>${title} — TR Homemade Chocolates</title>
+  <title>${title} — TR Artisan Reserve</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -858,7 +858,7 @@ app.get('/cart', (req, res) => {
           </thead>
           <tbody>
             <tr>
-              <td>
+              <td data-label="Product">
                 <div class="cart-item-flex">
                   <div class="cart-item-thumb">
                     <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=160&auto=format&fit=crop&q=80">
@@ -870,15 +870,15 @@ app.get('/cart', (req, res) => {
                   </div>
                 </div>
               </td>
-              <td>$9.50</td>
-              <td style="text-align: center;">
+              <td data-label="Price">$9.50</td>
+              <td data-label="Quantity" style="text-align: center;">
                 <div class="quantity-stepper" style="margin-bottom: 0;">
                   <button class="quantity-btn">−</button>
                   <input type="number" value="2" class="quantity-input">
                   <button class="quantity-btn">+</button>
                 </div>
               </td>
-              <td style="text-align: right; font-weight: 700;">$19.00</td>
+              <td data-label="Total" style="text-align: right; font-weight: 700;">$19.00</td>
             </tr>
           </tbody>
         </table>
