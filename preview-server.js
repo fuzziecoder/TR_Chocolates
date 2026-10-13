@@ -1,5 +1,5 @@
 /**
- * TR Artisan Reserve - Standalone Offline Preview Server
+ * TR Homemade Chocolates - Standalone Offline Preview Server
  * Run completely offline with ZERO Shopify login or store connection required!
  */
 
@@ -16,7 +16,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 // Mock Store Data
 const mockData = {
   shop: {
-    name: "TR Artisan Reserve"
+    name: "TR Homemade Chocolates "
   },
   collections: [
     {
@@ -40,7 +40,7 @@ const mockData = {
           id: 102,
           title: "Stone-Ground Vanilla Bean Chocolate",
           vendor: "TR Reserve",
-          price: 10.00,
+          price: 10.00, Homemade Chocolates
           compare_at_price: 10.00,
           available: true,
           image: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop&q=80",
@@ -213,36 +213,14 @@ function renderLayout(title, content) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${title} — TR Artisan Reserve</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme.css">
   <script src="/assets/theme.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mega menu JS hover (ensures it works even if CSS :hover has specificity issues)
-      document.querySelectorAll('.site-nav__item--mega').forEach(function(item) {
-        var drawer = item.querySelector('.mega-menu-drawer, .discover-menu-drawer');
-        if (!drawer) return;
-        var timer;
-        item.addEventListener('mouseenter', function() {
-          clearTimeout(timer);
-          drawer.style.display = 'block';
-        });
-        item.addEventListener('mouseleave', function() {
-          timer = setTimeout(function() { drawer.style.display = ''; }, 120);
-        });
-        drawer.addEventListener('mouseenter', function() { clearTimeout(timer); });
-        drawer.addEventListener('mouseleave', function() {
-          timer = setTimeout(function() { drawer.style.display = ''; }, 120);
-        });
-      });
-    });
-  </script>
 </head>
-
 <body>
   <!-- Site Header -->
   <header class="site-header-wrapper is-sticky">
@@ -253,7 +231,8 @@ function renderLayout(title, content) {
 
       <div class="site-header__logo-container">
         <a href="/" class="site-header__logo-link">
-          <span class="site-header__logo-text">TR Artisan Reserve</span>
+          <img src="/assets/tr-logo.png" alt="TR Homemade Chocolates" class="site-header__logo-img" width="52" height="52">
+          <span class="site-header__logo-text">TR Homemade Chocolates</span>
         </a>
       </div>
 
@@ -322,16 +301,9 @@ function renderLayout(title, content) {
           </div>
         </li>
         <li class="site-nav__item site-nav__item--mega has-dropdown">
-          <a href="/pages/discover" class="site-nav__link discover-trigger" aria-expanded="false" aria-haspopup="true">
-            Discover
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </a>
-
-          <!-- Discover Mega Menu Drawer -->
+          <a href="/pages/our-story" class="site-nav__link discover-trigger">Discover</a>
           <div class="discover-menu-drawer" id="DiscoverMegaMenu">
             <div class="page-width discover-menu-inner">
-
-              <!-- LEFT PANEL -->
               <div class="discover-menu-left">
                 <div class="discover-menu-links">
                   <div class="discover-menu-links__col">
@@ -350,8 +322,6 @@ function renderLayout(title, content) {
                   <a href="/pages/wholesale" class="discover-menu-cta__btn">Learn More</a>
                 </div>
               </div>
-
-              <!-- RIGHT PANEL — 2 feature cards -->
               <div class="discover-menu-cards">
                 <a href="/pages/gifting" class="discover-feature-card">
                   <div class="discover-feature-card__img">
@@ -368,18 +338,54 @@ function renderLayout(title, content) {
                   </div>
                   <div class="discover-feature-card__body">
                     <strong class="discover-feature-card__title">Wholesale</strong>
-                    <p class="discover-feature-card__desc">Carry TR Artisan products at your store or café.</p>
+                    <p class="discover-feature-card__desc">Carry TR Homemade Chocolates at your store or café.</p>
                   </div>
                 </a>
               </div>
-
             </div>
           </div>
         </li>
-        <li class="site-nav__item">
-          <a href="/pages/contact" class="site-nav__link">Visit</a>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/pages/contact" class="site-nav__link visit-trigger">Visit</a>
+          <div class="visit-menu-drawer" id="VisitMegaMenu">
+            <div class="page-width visit-menu-inner">
+              <div class="visit-menu-cards">
+                <a href="/pages/classes-events" class="visit-card">
+                  <div class="visit-card__img">
+                    <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=500&auto=format&fit=crop&q=80" alt="Classes & Events" loading="lazy">
+                  </div>
+                  <span class="visit-card__title">Classes &amp; Events</span>
+                </a>
+                <a href="/pages/find-us" class="visit-card">
+                  <div class="visit-card__img">
+                    <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=500&auto=format&fit=crop&q=80" alt="Find TR Near You" loading="lazy">
+                  </div>
+                  <span class="visit-card__title">Find TR Near You</span>
+                </a>
+              </div>
+              <div class="visit-menu-info">
+                <h3 class="visit-menu-info__name">TR Homemade Chocolates</h3>
+                <div class="visit-menu-info__block">
+                  <span class="visit-menu-info__label">Hours</span>
+                  <div class="visit-menu-info__text">
+                    <div>Mon-Thu: 10 am – 8 pm</div>
+                    <div>Fri-Sun: 10 am – 9 pm</div>
+                  </div>
+                </div>
+                <div class="visit-menu-info__block">
+                  <span class="visit-menu-info__label">Address</span>
+                  <a href="https://maps.google.com/?q=Annamalai+Nagar+Hosur+635126" target="_blank" rel="noopener" class="visit-menu-info__address">
+                    <div>Annamalai Nagar, Hosur</div>
+                    <div>635126</div>
+                  </a>
+                </div>
+              </div>
+              <div class="visit-menu-photo">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80" alt="TR Homemade Chocolates Shop Front" loading="lazy">
+              </div>
+            </div>
+          </div>
         </li>
-
       </nav>
 
       <div class="site-header__utils">
@@ -398,7 +404,10 @@ function renderLayout(title, content) {
   <div class="mobile-nav-overlay" data-action="close-mobile-menu"></div>
   <div class="mobile-nav-drawer" role="dialog" aria-modal="true">
     <div class="mobile-nav-header">
-      <span class="site-header__logo-text" style="font-size: 1.4rem;">TR Artisan</span>
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <img src="/assets/tr-logo.png" alt="TR Homemade Chocolates" class="site-header__logo-img" style="height: 40px; width: 40px;">
+        <span class="site-header__logo-text" style="font-size: 1.25rem;">TR Homemade Chocolates</span>
+      </div>
       <button type="button" class="header-icon-btn" data-action="close-mobile-menu">✕</button>
     </div>
     <ul class="mobile-nav-list">
@@ -426,7 +435,10 @@ function renderLayout(title, content) {
     <div class="page-width">
       <div class="footer-grid">
         <div>
-          <h3 class="footer-col__title">TR Artisan Reserve</h3>
+          <a href="/" class="footer-brand-logo">
+            <img src="/assets/tr-logo.png" alt="TR Homemade Chocolates" class="footer-brand-logo__img" width="48" height="48">
+            <span class="footer-brand-logo__text">TR Homemade Chocolates</span>
+          </a>
           <p style="color: #CFC5BE; font-size: 0.95rem; line-height: 1.6;">
             Dedicated to artisanal single-origin chocolate, wholesome pantry staples, and authentic traditional herbal wellness formulations.
           </p>
@@ -455,7 +467,7 @@ function renderLayout(title, content) {
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2026 TR Artisan Reserve. Handcrafted with Devotion.</div>
+        <div>© 2026 TR Homemade Chocolates. Handcrafted with Devotion.</div>
         <div>Online Store 2.0 Native Liquid Architecture</div>
       </div>
     </div>
@@ -497,30 +509,61 @@ app.get('/', (req, res) => {
     </section>
 
     <!-- Collection List: 6 Client Collections -->
+    <!-- Collection List: Shop by Category -->
     <section class="section-spacing">
       <div class="page-width">
-        <div class="section-header-row">
+        <div class="section-header-row" style="align-items: center; margin-bottom: 2rem;">
           <div>
-            <span style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); display: block; margin-bottom: 0.5rem;">
-              Handcrafted Artisanal Reserves
-            </span>
-            <h2 class="section-title">Shop by Category</h2>
+            <h2 class="section-title" style="font-family: var(--font-heading); font-size: 2.4rem; color: #171C23; margin: 0;">Shop by Category</h2>
           </div>
-          <a href="/collections" class="btn btn--secondary" style="padding: 0.65rem 1.4rem;">Shop All</a>
+          <a href="/collections" class="category-shop-all-btn">SHOP ALL</a>
         </div>
 
         <div class="collection-tiles-grid">
-          ${mockData.collections.map(c => `
-            <a href="/collections/${c.handle}" class="collection-tile">
-              <div class="collection-tile__media-container">
-                <img src="${c.image}" alt="${c.title}">
-              </div>
-              <div class="collection-tile__info">
-                <span class="collection-tile__title">${c.title}</span>
-                <span class="collection-tile__arrow">→</span>
-              </div>
-            </a>
-          `).join('')}
+          <a href="/collections/chocolate" class="collection-tile">
+            <div class="collection-tile__media-container">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&auto=format&fit=crop&q=80" alt="Mini Bars">
+            </div>
+            <div class="collection-tile__info">
+              <span class="collection-tile__title">MINI BARS</span>
+              <span class="collection-tile__arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="/collections/pantry" class="collection-tile">
+            <div class="collection-tile__media-container">
+              <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=500&auto=format&fit=crop&q=80" alt="Limited-Batch">
+            </div>
+            <div class="collection-tile__info">
+              <span class="collection-tile__title">LIMITED-BATCH</span>
+              <span class="collection-tile__arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="/collections/chocolate" class="collection-tile">
+            <div class="collection-tile__media-container">
+              <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=500&auto=format&fit=crop&q=80" alt="Chocolate Bars">
+            </div>
+            <div class="collection-tile__info">
+              <span class="collection-tile__title">CHOCOLATE BARS</span>
+              <span class="collection-tile__arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -865,7 +908,7 @@ app.get('/pages/our-story', (req, res) => {
       <div style="max-width: 820px; margin: 0 auto;">
         <h1 style="font-size: 3rem; margin-bottom: 1.5rem; text-align: center;">Our Story & Heritage</h1>
         <p style="font-size: 1.15rem; line-height: 1.8; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
-          TR Artisan Reserve was born from an unhurried reverence for the botanical kingdom. We marry single-origin artisanal chocolate making with centuries-old Indian herbal care rituals.
+          TR Homemade Chocolates was born from an unhurried reverence for pure ingredients and handcrafted perfection. We marry homemade artisanal chocolate making with centuries-old Indian herbal care rituals.
         </p>
         <p style="font-size: 1.15rem; line-height: 1.8; color: var(--color-text-secondary);">
           From smallholder cacao growers to heritage botanical harvesters supplying pure Padhamugan/Pathimugam, Kasthuri Manjal, and wild floral waters, every batch is crafted without compromise.
@@ -902,7 +945,7 @@ app.get('/search', (req, res) => {
 // Start listening
 app.listen(PORT, () => {
   console.log(`\n==================================================`);
-  console.log(`🌿 TR ARTISAN RESERVE - OFFLINE PREVIEW SERVER`);
+  console.log(`🍫 TR HOMEMADE CHOCOLATES - OFFLINE PREVIEW SERVER`);
   console.log(`🚀 Running at: http://localhost:${PORT}`);
   console.log(`👉 Zero login or Shopify store connection required!`);
   console.log(`==================================================\n`);

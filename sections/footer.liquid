@@ -3,7 +3,17 @@
     <div class="footer-grid">
       {%- comment -%} Brand Bio Column {%- endcomment -%}
       <div>
-        <h3 class="footer-col__title">{{ section.settings.brand_heading | default: shop.name }}</h3>
+        <a href="{{ routes.root_url }}" class="footer-brand-logo">
+          <img
+            src="{{ 'tr-logo.png' | asset_url }}"
+            alt="{{ section.settings.brand_heading | default: shop.name }}"
+            class="footer-brand-logo__img"
+            width="48"
+            height="48"
+            loading="lazy"
+          >
+          <span class="footer-brand-logo__text">{{ section.settings.brand_heading | default: shop.name | default: 'TR Homemade Chocolates' }}</span>
+        </a>
         <p style="color: #CFC5BE; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
           {{ section.settings.brand_bio | escape }}
         </p>
@@ -95,7 +105,7 @@
       "type": "text",
       "id": "brand_heading",
       "label": "Brand Heading",
-      "default": "TR Artisan Reserve"
+      "default": "TR Homemade Chocolates"
     },
     {
       "type": "textarea",

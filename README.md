@@ -1,4 +1,4 @@
-# TR Artisan Reserve — Shopify OS 2.0 Theme
+# TR Homemade Chocolates — Shopify OS 2.0 Theme
 
 A responsive, high-performance **Shopify Online Store 2.0 (OS 2.0)** Liquid theme crafted for an artisan shop featuring handcrafted single-origin chocolates, pantry staples, and authentic traditional herbal wellness formulations.
 

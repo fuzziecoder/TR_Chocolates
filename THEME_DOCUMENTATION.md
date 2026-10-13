@@ -1,7 +1,7 @@
-# TR Artisan Reserve — Shopify Online Store 2.0 Theme Documentation
+# TR Homemade Chocolates — Shopify Online Store 2.0 Theme Documentation
 
 ## 1. Executive Summary & Stack Details
-This theme has been custom built using **Shopify Online Store 2.0 (OS 2.0)** native architecture, designed specifically for **TR Chocolates & Artisanal Botanicals**. It delivers an artisanal visual identity inspired by heritage craftsmanship (earthy hues, subtle offset card borders, warm editorial typography) while remaining completely decoupled from any third-party proprietary assets.
+This theme has been custom built using **Shopify Online Store 2.0 (OS 2.0)** native architecture, designed specifically for **TR Homemade Chocolates & Artisanal Botanicals**. It delivers an artisanal visual identity inspired by heritage craftsmanship (earthy hues, subtle offset card borders, warm editorial typography) and authentic brand identity featuring the official round seal logo.
 
 ### Technology Stack & Environment Versions
 - **Theme Architecture**: Shopify Online Store 2.0 (Liquid Engine, JSON Templates, Sections & Blocks, Storefront Facet Filtering)
@@ -20,7 +20,7 @@ As observed in the reference design and browser inspector context, the header an
 
 ```
 +----------------------------------------------------------------------------------------------------+
-|  [Logo: TR Artisan]    HOME    SHOP [v]    OUR STORY    CONTACT     [Search]  [Account]  [Cart (0)]|
+|  [Logo: TR Homemade Chocolates] HOME  SHOP [v]  OUR STORY  CONTACT     [Search]  [Account]  [Cart (0)]|
 +----------------------------------------------------------------------------------------------------+
                                     | (Hover / Focus Dropdown)
 +----------------------------------------------------------------------------------------------------+

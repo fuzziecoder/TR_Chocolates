@@ -17,13 +17,22 @@
             section.settings.logo
             | image_url: width: 300
             | image_tag:
+              class: 'site-header__logo-img',
               loading: 'eager',
               fetchpriority: 'high',
               alt: section.settings.logo.alt | default: shop.name | escape,
               style: 'max-width: ' | append: section.settings.logo_width | append: 'px;'
           }}
         {%- else -%}
-          <span class="site-header__logo-text">{{ shop.name | default: 'TR Artisan' }}</span>
+          <img
+            src="{{ 'tr-logo.png' | asset_url }}"
+            alt="{{ shop.name | default: 'TR Homemade Chocolates' }}"
+            class="site-header__logo-img"
+            width="52"
+            height="52"
+            loading="eager"
+          >
+          <span class="site-header__logo-text">{{ shop.name | default: 'TR Homemade Chocolates' }}</span>
         {%- endif -%}
       </a>
     </div>
@@ -34,6 +43,7 @@
         {%- for link in main_menu.links -%}
           {%- assign is_shop = false -%}
           {%- assign is_discover = false -%}
+          {%- assign is_visit = false -%}
           {%- assign downcase_title = link.title | downcase -%}
           {%- if downcase_title contains 'shop' or link.links.size > 0 -%}
             {%- assign is_shop = true -%}
@@ -41,16 +51,19 @@
           {%- if downcase_title contains 'discover' -%}
             {%- assign is_discover = true -%}
           {%- endif -%}
+          {%- if downcase_title contains 'visit' -%}
+            {%- assign is_visit = true -%}
+          {%- endif -%}
 
           {%- assign has_dropdown = false -%}
-          {%- if is_shop or is_discover -%}
+          {%- if is_shop or is_discover or is_visit -%}
             {%- assign has_dropdown = true -%}
           {%- endif -%}
 
           <li class="site-nav__item{% if has_dropdown %} site-nav__item--mega has-dropdown{% endif %}">
             <a
               href="{{ link.url }}"
-              class="site-nav__link{% if link.current %} is-active{% endif %}{% if is_discover %} discover-trigger{% endif %}"
+              class="site-nav__link{% if link.current %} is-active{% endif %}{% if is_discover %} discover-trigger{% endif %}{% if is_visit %} visit-trigger{% endif %}"
               {% if has_dropdown %}aria-expanded="false" aria-haspopup="true"{% endif %}
             >
               {{ link.title }}
@@ -63,6 +76,8 @@
               {% render 'header-mega-menu' %}
             {%- elsif is_discover -%}
               {% render 'discover-mega-menu' %}
+            {%- elsif is_visit -%}
+              {% render 'visit-mega-menu' %}
             {%- endif -%}
           </li>
         {%- endfor -%}
@@ -85,8 +100,12 @@
           </a>
           {% render 'discover-mega-menu' %}
         </li>
-        <li class="site-nav__item">
-          <a href="/pages/contact" class="site-nav__link">Visit</a>
+        <li class="site-nav__item site-nav__item--mega has-dropdown">
+          <a href="/pages/contact" class="site-nav__link visit-trigger" aria-expanded="false" aria-haspopup="true">
+            Visit
+            {% render 'icon', name: 'chevron-down' %}
+          </a>
+          {% render 'visit-mega-menu' %}
         </li>
       {%- endif -%}
     </nav>

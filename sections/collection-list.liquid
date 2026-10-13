@@ -11,8 +11,8 @@
       </div>
 
       {%- if section.settings.show_all_link and section.settings.all_link != blank -%}
-        <a href="{{ section.settings.all_link }}" class="btn btn--secondary" style="padding: 0.65rem 1.4rem;">
-          {{ section.settings.all_link_text | default: 'Shop All' }}
+        <a href="{{ section.settings.all_link }}" class="category-shop-all-btn">
+          {{ section.settings.all_link_text | default: 'SHOP ALL' }}
         </a>
       {%- endif -%}
     </div>
@@ -28,13 +28,13 @@
           %}
         {%- endfor -%}
       {%- else -%}
-        {%- comment -%} Default display of the client's 6 collections {%- endcomment -%}
-        {% render 'collection-tile', collection: collections['chocolate'], custom_title: 'Chocolate' %}
-        {% render 'collection-tile', collection: collections['pantry'], custom_title: 'Pantry' %}
-        {% render 'collection-tile', collection: collections['herbal-traditional-care'], custom_title: 'Herbal & Traditional Care' %}
+        {%- comment -%} Default display matching artisan showcase {%- endcomment -%}
+        {% render 'collection-tile', collection: collections['chocolate'], custom_title: 'Mini Bars' %}
+        {% render 'collection-tile', collection: collections['pantry'], custom_title: 'Limited-Batch' %}
+        {% render 'collection-tile', collection: collections['chocolate'], custom_title: 'Chocolate Bars' %}
+        {% render 'collection-tile', collection: collections['herbal-traditional-care'], custom_title: 'Herbal Care' %}
         {% render 'collection-tile', collection: collections['bath-body'], custom_title: 'Bath & Body' %}
         {% render 'collection-tile', collection: collections['face-care'], custom_title: 'Face Care' %}
-        {% render 'collection-tile', collection: collections['hair-care'], custom_title: 'Hair Care' %}
       {%- endif -%}
     </div>
   </div>
