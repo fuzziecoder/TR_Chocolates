@@ -213,7 +213,7 @@ function renderLayout(title, content) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>${title} — TR Artisan Reserve</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -815,7 +815,7 @@ app.get('/cart', (req, res) => {
           </thead>
           <tbody>
             <tr>
-              <td>
+              <td data-label="Product">
                 <div class="cart-item-flex">
                   <div class="cart-item-thumb">
                     <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=160&auto=format&fit=crop&q=80">
@@ -827,15 +827,15 @@ app.get('/cart', (req, res) => {
                   </div>
                 </div>
               </td>
-              <td>$9.50</td>
-              <td style="text-align: center;">
+              <td data-label="Price">$9.50</td>
+              <td data-label="Quantity" style="text-align: center;">
                 <div class="quantity-stepper" style="margin-bottom: 0;">
                   <button class="quantity-btn">−</button>
                   <input type="number" value="2" class="quantity-input">
                   <button class="quantity-btn">+</button>
                 </div>
               </td>
-              <td style="text-align: right; font-weight: 700;">$19.00</td>
+              <td data-label="Total" style="text-align: right; font-weight: 700;">$19.00</td>
             </tr>
           </tbody>
         </table>
