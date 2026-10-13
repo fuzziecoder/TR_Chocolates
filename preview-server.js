@@ -40,7 +40,7 @@ const mockData = {
           id: 102,
           title: "Stone-Ground Vanilla Bean Chocolate",
           vendor: "TR Reserve",
-          price: 10.00, Homemade Chocolates
+          price: 10.00,
           compare_at_price: 10.00,
           available: true,
           image: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop&q=80",
