@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TR Homemade Chocolates | Kodaikanal-Style Chocolates in Hosur</title>
+  <meta name="description"
+    content="Discover TR Homemade Chocolates in Hosur: authentic Kodaikanal-style homemade chocolates and select Kodai specialities crafted with real ingredients. Homemade with Love.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./assets/theme.css">
+
+  <!-- Scripts -->
+  <script src="./data/products.js"></script>
+  <script src="./assets/card-nav.js"></script>
+  <script src="./assets/album-rail.js"></script>
+  <script src="./assets/accordion-gallery.js"></script>
+  <script src="./assets/lightbox.js"></script>
+  <script src="./assets/border-glow.js" defer></script>
+  <script src="./assets/star-border.js" defer></script>
+  <script src="./assets/theme.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. HEADER — CARD NAV
+       ========================================================================== -->
+  <header class="card-nav-header" role="banner">
+    <div class="page-width card-nav-bar">
+      <!-- Brand Logo / Wordmark -->
+      <a href="#home" class="card-nav-brand" aria-label="TR Homemade Chocolates Home">
+        <img src="./assets/tr-logo.png" alt="TR Seal" class="card-nav-logo" width="44" height="44">
+        <span class="card-nav-title">TR Homemade Chocolates</span>
+      </a>
+
+      <!-- Right Action Toolbar -->
+      <div class="card-nav-actions">
+        <!-- Expandable Card Nav Menu Trigger -->
+        <button type="button" class="card-nav-trigger" data-cardnav-trigger aria-expanded="false"
+          aria-controls="cardNavPanel" aria-label="Toggle navigation menu cards">
+          <span>Explore Menu</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Direct CTA to Collection -->
+        <a href="#products" class="btn btn--dark"
+          onclick="if(window.filterCatalogByCategory) window.filterCatalogByCategory('all');">
+          Explore Collection
+        </a>
+      </div>
+    </div>
+
+    <!-- Expanded Row of Navigation Cards (Desktop Row, Mobile Stack) -->
+    <div class="card-nav-panel" id="cardNavPanel" data-cardnav-panel role="region" aria-label="Navigation Cards"
+      aria-hidden="true">
+      <div class="page-width card-nav-grid">
+        <!-- Card 1: Discover -->
+        <div class="card-nav-item">
+          <span class="card-nav-item__badge">Discover</span>
+          <h3 class="card-nav-item__heading">Our Story & Heritage</h3>
+          <ul class="card-nav-item__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Explore -->
+        <div class="card-nav-item">
+          <span class="card-nav-item__badge">Explore</span>
+          <h3 class="card-nav-item__heading">Showcase Catalog</h3>
+          <ul class="card-nav-item__links">
+            <li><a href="#products">All Products</a></li>
+            <li><a href="#chocolates">Chocolates Showcase</a></li>
+            <li><a href="#kodai-specials">Kodai Specials</a></li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Connect -->
+        <div class="card-nav-item">
+          <span class="card-nav-item__badge">Connect</span>
+          <h3 class="card-nav-item__heading">Studio & Gallery</h3>
+          <ul class="card-nav-item__links">
+            <li><a href="#gallery">Artisan Photo Gallery</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="https://www.instagram.com/tr_homemade_chocolates_hosur/" target="_blank"
+                rel="noopener noreferrer">Instagram (@tr_homemade_chocolates_hosur)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="card-nav-backdrop" data-cardnav-backdrop></div>
+
+  <main id="mainContent">
+
+    <!-- ==========================================================================
+         2. HERO — FLOATING CHOCOLATE COLLAGE
+         ========================================================================== -->
+    <section id="home" class="hero-section" aria-labelledby="heroHeading">
+      <div class="page-width">
+        <div class="hero-grid">
+          <!-- Left: Headline & Actions -->
+          <div class="hero-text-content">
+            <div class="hero-eyebrow">
+              <span>✦</span> TR Homemade Chocolates • Hosur
+            </div>
+            <h1 id="heroHeading" class="hero-heading">
+              Homemade with Love
+            </h1>
+            <p class="hero-description">
+              Authentic Kodaikanal-style homemade chocolates, crafted with real ingredients.
+            </p>
+            <p class="hero-supporting">
+              “Real Ingredients. Pure Love.”
+            </p>
+            <div class="hero-cta-group">
+              <a href="#products" class="btn btn--primary"
+                onclick="if(window.filterCatalogByCategory) window.filterCatalogByCategory('all');">
+                Explore Our Collection
+              </a>
+              <a href="#about" class="btn btn--secondary">
+                Our Story
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Floating Chocolate Collage over Warm Ivory Shape -->
+          <div class="hero-media-content">
+            <div class="hero-collage-wrapper">
+              <!-- Large warm ivory shape -->
+              <div class="hero-warm-shape"></div>
+
+              <!-- 1 Dominant Image -->
+              <div class="hero-collage-dominant">
+                <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&auto=format&fit=crop&q=85"
+                  alt="Handcrafted Dark Chocolate Cashew Bark" fetchpriority="high">
+              </div>
+
+              <!-- 2 Smaller Supporting Images with gentle depth & floating motion -->
+              <div class="hero-collage-supporting-1">
+                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop&q=80"
+                  alt="White Chocolate Almond Crunch">
+              </div>
+
+              <div class="hero-collage-supporting-2">
+                <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop&q=80"
+                  alt="Dark Chocolate Almond Crunch Clusters">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. ABOUT US — CREAM BACKGROUND
+         ========================================================================== -->
+    <section id="about" class="section-spacing about-section" aria-labelledby="aboutHeading">
+      <div class="page-width">
+        <div class="about-grid">
+          <div class="about-media">
+            <div class="about-framed-image">
+              <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&auto=format&fit=crop&q=80"
+                alt="Artisan chocolate crafting with pure ingredients" loading="lazy">
+            </div>
+          </div>
+          <div class="about-content">
+            <span class="section-eyebrow">Our Lineage</span>
+            <h2 id="aboutHeading">A Little Kodai, A Lot of Love.</h2>
+            <div class="gold-divider" style="margin: 1rem 0 1.5rem;"></div>
+            <p>
+              TR Homemade Chocolates in Hosur celebrates Kodaikanal-style homemade chocolates and selected Kodai special
+              products.
+            </p>
+            <p>
+              Born from a passion for honest ingredients and hill confectionery heritage, our creations are
+              slow-tempered and prepared in small batches. We take pride in delivering natural flavours and comforting
+              richness directly to chocolate enthusiasts in Hosur and beyond.
+            </p>
+
+            <div class="about-highlights">
+              <div class="about-highlight-item">
+                <h4>Homemade with Love</h4>
+                <span>Mindful Small Batches</span>
+              </div>
+              <div class="about-highlight-item">
+                <h4>Real Ingredients</h4>
+                <span>Zero Artificial Fillers</span>
+              </div>
+              <div class="about-highlight-item">
+                <h4>Kodai Specialities</h4>
+                <span>Timeless Hill Recipes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. CHOCOLATE HIGHLIGHT — ALBUM RAIL (FAN-STYLE PRODUCT SHOWCASE)
+         ========================================================================== -->
+    <section id="chocolates" class="section-spacing chocolates-section" aria-labelledby="chocolatesHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Artisan Highlight</span>
+          <h2 id="chocolatesHeading" class="section-title">Our Chocolate Collection</h2>
+          <p class="section-description">
+            Discover your next favourite. Interactive fanned sleeves of our signature homemade chocolates.
+          </p>
+        </div>
+
+        <!-- AlbumRail Mount Point -->
+        <div id="albumRailMount"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. OTHER KODAI SPECIALITIES — ACCORDION GALLERY
+         ========================================================================== -->
+    <section id="kodai-specials" class="section-spacing kodai-specials-section" aria-labelledby="kodaiHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Hill Delights</span>
+          <h2 id="kodaiHeading" class="section-title section-title--dark">More Kodai Specialities</h2>
+          <p class="section-description section-description--dark">
+            Expand each panel to explore authentic high-altitude teas, plantation roast coffee, wild raw honey, bilona
+            ghee, and traditional herbal formulations.
+          </p>
+        </div>
+
+        <!-- AccordionGallery Mount Point -->
+        <div id="accordionGalleryMount"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. OUR PRODUCTS — FILTERABLE CATALOG
+         ========================================================================== -->
+    <section id="products" class="section-spacing catalog-section" aria-labelledby="catalogHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Showcase Catalog</span>
+          <h2 id="catalogHeading" class="section-title">Explore Our Collection</h2>
+          <p class="section-description">
+            Browse our full repertoire of verified small-batch creations. Search by name or filter by category to view
+            detailed ingredients and traditional rituals.
+          </p>
+        </div>
+
+        <!-- Toolbar: Search & Category Tabs -->
+        <div class="catalog-toolbar">
+          <div class="catalog-search-row">
+            <div class="catalog-search-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="catalogSearch" class="catalog-search-input"
+                placeholder="Search products or ingredients (e.g., Cashew, Honey, Ghee)..." aria-label="Search catalog">
+            </div>
+            <button type="button" id="catalogClearSearch" class="catalog-clear-btn" style="display: none;">
+              Clear Filters
+            </button>
+          </div>
+
+          <div class="catalog-category-tabs" role="tablist" aria-label="Filter by category">
+            <button type="button" class="category-tab-btn is-active" data-category-id="all" role="tab">All</button>
+            <button type="button" class="category-tab-btn" data-category-id="chocolates" role="tab">Chocolates</button>
+            <button type="button" class="category-tab-btn" data-category-id="tea-powder" role="tab">Tea Powder</button>
+            <button type="button" class="category-tab-btn" data-category-id="coffee-powder" role="tab">Coffee
+              Powder</button>
+            <button type="button" class="category-tab-btn" data-category-id="honey" role="tab">Honey</button>
+            <button type="button" class="category-tab-btn" data-category-id="ghee" role="tab">Ghee</button>
+            <button type="button" class="category-tab-btn" data-category-id="face-wash" role="tab">Face Wash</button>
+            <button type="button" class="category-tab-btn" data-category-id="shampoo" role="tab">Aloe Vera & Neem
+              Shampoo</button>
+          </div>
+        </div>
+
+        <!-- Catalog Status Bar -->
+        <div class="catalog-status-bar">
+          <span id="catalogCountDisplay" class="catalog-count-strong">Showing 11 products</span>
+          <span style="font-size: 0.85rem; color: var(--color-text-muted-on-dark);">Pure Showcase Catalog</span>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="catalog-grid" id="catalogGrid">
+          <!-- 1. Dark Chocolate Cashew Bark -->
+          <div class="product-card" data-catalog-product data-category="chocolates"
+            data-name="Dark Chocolate Cashew Bark"
+            data-desc="Slow-tempered rich dark chocolate slab generously studded with slow-roasted golden cashews.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=800&auto=format&fit=crop&q=80"
+                alt="Dark Chocolate Cashew Bark" loading="lazy">
+              <span class="product-card__tag">Kodai Speciality</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Chocolates</span>
+              <h3 class="product-card__name">Dark Chocolate Cashew Bark</h3>
+              <p class="product-card__desc">Slow-tempered rich dark chocolate slab generously studded with slow-roasted
+                golden cashews.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"choc-101","name":"Dark Chocolate Cashew Bark","categoryName":"Chocolates","image":"https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&auto=format&fit=crop&q=80","shortDescription":"Slow-tempered rich dark chocolate slab generously studded with slow-roasted golden cashews.","description":"Handcrafted in small batches using traditional stone-ground techniques. We temper rich dark chocolate and fold in freshly roasted premium cashews for an irresistible balance of cocoa intensity and nutty crunch.","ingredients":"Slow-roasted cacao beans, cacao butter, unrefined raw cane sugar, whole roasted cashews.","size":"100g handcrafted slab","storage":"Store in a cool, dry place away from heat and direct sunlight (16°C – 20°C).","usage":"Snap off a crisp piece and allow the dark chocolate to melt gently on your tongue.","gallery":["https://images.unsplash.com/photo-1548907040-4baa42d10919?w=1000&auto=format&fit=crop&q=80","https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. White Chocolate Almond Crunch -->
+          <div class="product-card" data-catalog-product data-category="chocolates"
+            data-name="White Chocolate Almond Crunch"
+            data-desc="Silky, creamy white chocolate blended with fragrant roasted California almond slivers.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=800&auto=format&fit=crop&q=80"
+                alt="White Chocolate Almond Crunch" loading="lazy">
+              <span class="product-card__tag">Bestseller</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Chocolates</span>
+              <h3 class="product-card__name">White Chocolate Almond Crunch</h3>
+              <p class="product-card__desc">Silky, creamy white chocolate blended with fragrant roasted California
+                almond slivers.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"choc-102","name":"White Chocolate Almond Crunch","categoryName":"Chocolates","image":"https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&auto=format&fit=crop&q=80","shortDescription":"Silky, creamy white chocolate blended with fragrant roasted California almond slivers.","description":"Crafted with pure cocoa butter and whole milk essence, gently folded with toasted almond flakes for a velvety melt followed by a delicate, buttery crunch.","ingredients":"Pure cocoa butter, whole milk solids, unrefined cane sugar, toasted almond flakes, natural vanilla.","size":"100g bar","storage":"Keep in a cool, odor-free pantry sealed in an airtight container.","usage":"A sublime afternoon sweet treat, paired delightfully with green tea.","gallery":["https://images.unsplash.com/photo-1511381939415-e44015466834?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. White Chocolate Pistachio & Raisin Bark -->
+          <div class="product-card" data-catalog-product data-category="chocolates"
+            data-name="White Chocolate Pistachio & Raisin Bark"
+            data-desc="Creamy vanilla-infused white chocolate topped with emerald pistachios and sun-dried raisins.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&auto=format&fit=crop&q=80"
+                alt="White Chocolate Pistachio & Raisin Bark" loading="lazy">
+              <span class="product-card__tag">Artisan</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Chocolates</span>
+              <h3 class="product-card__name">White Chocolate Pistachio & Raisin</h3>
+              <p class="product-card__desc">Creamy vanilla-infused white chocolate topped with emerald pistachios and
+                sun-dried raisins.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"choc-103","name":"White Chocolate Pistachio & Raisin Bark","categoryName":"Chocolates","image":"https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&auto=format&fit=crop&q=80","shortDescription":"Creamy vanilla-infused white chocolate topped with emerald pistachios and sun-dried raisins.","description":"An homage to celebration treats: velvety sweet white chocolate topped with crisp slivered Iranian pistachios and naturally chewy sun-dried golden raisins for a layered texture.","ingredients":"Pure cocoa butter, milk solids, roasted pistachios, sun-dried golden raisins, cane sugar.","size":"100g slab","storage":"Store below 20°C in an airtight container.","usage":"Break into rustic pieces to share during family tea time.","gallery":["https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Dark Chocolate Almond Crunch Clusters -->
+          <div class="product-card" data-catalog-product data-category="chocolates"
+            data-name="Dark Chocolate Almond Crunch Clusters"
+            data-desc="Bite-sized clusters of slow-toasted almonds drenched in velvety dark chocolate.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80"
+                alt="Dark Chocolate Almond Crunch Clusters" loading="lazy">
+              <span class="product-card__tag">Clusters</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Chocolates</span>
+              <h3 class="product-card__name">Dark Chocolate Almond Clusters</h3>
+              <p class="product-card__desc">Bite-sized clusters of slow-toasted almonds drenched in velvety dark
+                chocolate.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"choc-104","name":"Dark Chocolate Almond Crunch Clusters","categoryName":"Chocolates","image":"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=900&auto=format&fit=crop&q=80","shortDescription":"Bite-sized clusters of slow-toasted almonds drenched in velvety dark chocolate.","description":"Each cluster is individually hand-spooned, marrying slow-toasted crunchy almonds with single-origin dark chocolate. Rich, satisfying, and packed with honest wholesome flavors.","ingredients":"Whole roasted almonds, dark cacao mass, cacao butter, unrefined raw cane sugar.","size":"120g pouch","storage":"Keep in a cool, moisture-free container.","usage":"A nutrient-rich midday snack or post-dinner sweet nibble.","gallery":["https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Mango Delight Fudge Squares -->
+          <div class="product-card" data-catalog-product data-category="chocolates"
+            data-name="Mango Delight Fudge Squares"
+            data-desc="Luscious melt-in-the-mouth fudge squares infused with real tropical mango pulp.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80"
+                alt="Mango Delight Fudge Squares" loading="lazy">
+              <span class="product-card__tag">Seasonal</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Chocolates</span>
+              <h3 class="product-card__name">Mango Delight Fudge Squares</h3>
+              <p class="product-card__desc">Luscious melt-in-the-mouth fudge squares infused with real tropical mango
+                pulp.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"choc-105","name":"Mango Delight Fudge Squares","categoryName":"Chocolates","image":"https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=900&auto=format&fit=crop&q=80","shortDescription":"Luscious melt-in-the-mouth fudge squares infused with real tropical mango pulp.","description":"Crafted with sun-ripened Alphonso mango essence blended slowly with creamy white chocolate fudge. A burst of summery joy with an ultra-smooth, creamy texture.","ingredients":"Real mango pulp, white chocolate base, condensed milk solids, butter, unrefined cane sugar.","size":"150g box (approx. 6 squares)","storage":"Refrigerate upon opening for firm fudge texture.","usage":"Serve chilled as a refreshing fruit-infused dessert square.","gallery":["https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Kodai Mountain Tea Powder -->
+          <div class="product-card" data-catalog-product data-category="tea-powder"
+            data-name="Kodai Mountain Tea Powder"
+            data-desc="High-altitude Nilgiris & Kodaikanal tea blend with notes of Green Tea and refreshing Lemon Tea.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80"
+                alt="Kodai Mountain Tea Powder" loading="lazy">
+              <span class="product-card__tag">Hill Harvest</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Tea Powder</span>
+              <h3 class="product-card__name">Kodai Mountain Tea Powder</h3>
+              <p class="product-card__desc">High-altitude Nilgiris & Kodaikanal tea blend with notes of Green Tea and
+                refreshing Lemon Tea.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-201","name":"Kodai Mountain Tea Powder","categoryName":"Tea Powder","image":"https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=900&auto=format&fit=crop&q=80","shortDescription":"High-altitude Nilgiris & Kodaikanal tea blend with notes of Green Tea and refreshing Lemon Tea.","description":"Sourced from misty high-elevation tea gardens. Carefully cured to yield a bright, brisk amber liquor with clean floral aromas. Also available in refreshing Green Tea and citrus-infused Lemon Tea variations upon request.","ingredients":"100% Pure single-estate hill-grown tea leaves (Camellia sinensis).","size":"250g / 500g pouch","storage":"Store in an airtight opaque container away from heat and moisture.","usage":"Boil fresh water, steep 1 teaspoon per cup for 3–4 minutes, strain, and savor hot.","gallery":["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Artisan Kodai Roast Coffee Powder -->
+          <div class="product-card" data-catalog-product data-category="coffee-powder"
+            data-name="Artisan Kodai Roast Coffee Powder"
+            data-desc="Freshly roasted hill-grown Arabica & Robusta blend with rich notes of caramel and cocoa.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&auto=format&fit=crop&q=80"
+                alt="Artisan Kodai Roast Coffee Powder" loading="lazy">
+              <span class="product-card__tag">Shade Grown</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Coffee Powder</span>
+              <h3 class="product-card__name">Artisan Roast Coffee Powder</h3>
+              <p class="product-card__desc">Freshly roasted hill-grown Arabica & Robusta blend with rich notes of
+                caramel and cocoa.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-202","name":"Artisan Kodai Roast Coffee Powder","categoryName":"Coffee Powder","image":"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&auto=format&fit=crop&q=80","shortDescription":"Freshly roasted hill-grown Arabica & Robusta blend with rich notes of caramel and cocoa.","description":"Grown under shaded canopy on southern hill slopes. Handpicked cherries are medium-dark roasted in small batches and ground for a smooth, full-bodied morning brew with deep chocolatey undertones.","ingredients":"80% Shade-grown Arabica coffee, 20% Robusta (pure coffee, zero chicory unless requested).","size":"200g / 500g vacuum sealed pack","storage":"Store sealed in a dry cupboard away from strong ambient odors.","usage":"Brew in a traditional South Indian filter or French press for 10 minutes.","gallery":["https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Pure Wild Forest Honey -->
+          <div class="product-card" data-catalog-product data-category="honey" data-name="Pure Wild Forest Honey"
+            data-desc="Raw, unfiltered honey collected from forest wildflowers and indigenous hill bee canopies.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&auto=format&fit=crop&q=80"
+                alt="Pure Wild Forest Honey" loading="lazy">
+              <span class="product-card__tag">Unfiltered</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Honey</span>
+              <h3 class="product-card__name">Pure Wild Forest Honey</h3>
+              <p class="product-card__desc">Raw, unfiltered honey collected from forest wildflowers and indigenous hill
+                bee canopies.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-203","name":"Pure Wild Forest Honey","categoryName":"Honey","image":"https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=900&auto=format&fit=crop&q=80","shortDescription":"Raw, unfiltered honey collected from forest wildflowers and indigenous hill bee canopies.","description":"Harvested gently using traditional methods without artificial pasteurization or ultra-filtration. Preserves the natural nectar complexity, delicate pollen, and rich floral terroir of the forest flora.","ingredients":"100% Pure raw wild forest honey.","size":"250g / 500g glass jar","storage":"Store at ambient room temperature. If crystallized naturally, place jar in warm water.","usage":"Drizzle over warm porridge, stir into herbal infusions, or enjoy by the spoonful.","gallery":["https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. A2 Traditional Bilona Cow Ghee -->
+          <div class="product-card" data-catalog-product data-category="ghee" data-name="A2 Traditional Bilona Cow Ghee"
+            data-desc="Hand-churned bilona-style golden cow ghee simmered slowly over a gentle flame.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800&auto=format&fit=crop&q=80"
+                alt="A2 Traditional Bilona Cow Ghee" loading="lazy">
+              <span class="product-card__tag">Bilona Churned</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Ghee</span>
+              <h3 class="product-card__name">A2 Bilona Cow Ghee</h3>
+              <p class="product-card__desc">Hand-churned bilona-style golden cow ghee simmered slowly over a gentle
+                flame.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-204","name":"A2 Traditional Bilona Cow Ghee","categoryName":"Ghee","image":"https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=900&auto=format&fit=crop&q=80","shortDescription":"Hand-churned bilona-style golden cow ghee simmered slowly over a gentle flame.","description":"Prepared according to timeless culinary heritage. Curd made from indigenous cow milk is churned both ways into cultured butter, then simmered slowly until aromatic and golden with a rich granular texture.","ingredients":"100% Cultured cow milk butterfat.","size":"300ml / 500ml jar","storage":"Store in a clean dry cupboard away from moisture. Always use a dry spoon.","usage":"Add a fragrant spoonful over hot rice, rotis, or use in traditional mindful cooking.","gallery":["https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. Clarifying Botanical Face Wash -->
+          <div class="product-card" data-catalog-product data-category="face-wash"
+            data-name="Clarifying Botanical Face Wash"
+            data-desc="Gentle soap-free foaming facial cleanser enriched with natural rose water and botanical extracts.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80"
+                alt="Clarifying Botanical Face Wash" loading="lazy">
+              <span class="product-card__tag">Rose Water Infusion</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Face Wash</span>
+              <h3 class="product-card__name">Clarifying Botanical Face Wash</h3>
+              <p class="product-card__desc">Gentle soap-free foaming facial cleanser enriched with natural rose water
+                and botanical extracts.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-205","name":"Clarifying Botanical Face Wash","categoryName":"Face Wash","image":"https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&auto=format&fit=crop&q=80","shortDescription":"Gentle soap-free foaming facial cleanser enriched with natural rose water and botanical extracts.","description":"Infused with hydro-distilled country rose water and gentle plant cleansers. Gently washes away daily impurities, dust, and excess oil without stripping the skin natural moisture barrier.","ingredients":"Hydro-distilled rose water, mild coconut-derived surfactants, vegetable glycerin, botanical extracts.","size":"100ml pump bottle","storage":"Store in a cool dry area away from direct sunlight.","usage":"Pump a small amount onto damp hands, massage gently over face, and rinse with lukewarm water.","gallery":["https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 11. Aloe Vera & Neem Revitalizing Shampoo -->
+          <div class="product-card" data-catalog-product data-category="shampoo"
+            data-name="Aloe Vera & Neem Revitalizing Shampoo"
+            data-desc="Traditional herbal clarifying shampoo prepared with pure aloe vera leaf juice and wild neem leaves.">
+            <div class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80"
+                alt="Aloe Vera & Neem Revitalizing Shampoo" loading="lazy">
+              <span class="product-card__tag">Herbal Cleanse</span>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__category">Aloe Vera & Neem Shampoo</span>
+              <h3 class="product-card__name">Aloe Vera & Neem Shampoo</h3>
+              <p class="product-card__desc">Traditional herbal clarifying shampoo prepared with pure aloe vera leaf
+                juice and wild neem leaves.</p>
+              <div class="product-card__action">
+                <button type="button" class="btn btn--dark btn--full" data-view-product
+                  data-product-data='{"id":"kodai-206","name":"Aloe Vera & Neem Revitalizing Shampoo","categoryName":"Aloe Vera & Neem Shampoo","image":"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80","shortDescription":"Traditional herbal clarifying shampoo prepared with pure aloe vera leaf juice and wild neem leaves.","description":"A restorative hair and scalp cleanser formulated with fresh aloe vera inner fillet and wild neem leaves. Soothes a tired scalp, gently clears residue, and leaves hair soft, naturally shiny, and manageable.","ingredients":"Fresh Aloe barbadensis leaf extract, Azadirachta indica (Neem) leaf extract, mild herbal cleansing base, purified water.","size":"200ml bottle","storage":"Keep in a cool dry place. Shake gently before use.","usage":"Apply to wet hair, gently lather into scalp for 1–2 minutes, and rinse thoroughly.","gallery":["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1000&auto=format&fit=crop&q=80"]}'>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="catalogEmptyState" class="catalog-empty-state" style="display: none;">
+          <div class="catalog-empty-state__icon">🍫</div>
+          <h3>No matching items found</h3>
+          <p>We could not find any creations matching your search. Try checking your spelling or reset the filters.</p>
+          <button type="button" class="btn btn--primary"
+            onclick="if(window.filterCatalogByCategory) window.filterCatalogByCategory('all');">
+            Show All Products
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. WHY CHOOSE US
+         ========================================================================== -->
+    <section id="why-us" class="section-spacing why-us-section" aria-labelledby="whyUsHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Our Principles</span>
+          <h2 id="whyUsHeading" class="section-title">Why Choose TR Homemade</h2>
+          <p class="section-description">
+            Honoring genuine hill craftsmanship, authentic natural flavours, and uncompromising care.
+          </p>
+        </div>
+
+        <div class="why-us-grid">
+          <div class="why-us-card">
+            <div class="why-us-card__icon">🤎</div>
+            <h3>Homemade with Love</h3>
+            <p>Every piece of chocolate is prepared in micro-batches with meticulous patience and genuine artisanal
+              affection.</p>
+          </div>
+
+          <div class="why-us-card">
+            <div class="why-us-card__icon">🌿</div>
+            <h3>Real Ingredients</h3>
+            <p>Pure cocoa butter, stone-ground cacao, whole nuts, and unadulterated forest honeys. Zero synthetic
+              stabilizers.</p>
+          </div>
+
+          <div class="why-us-card">
+            <div class="why-us-card__icon">⛰️</div>
+            <h3>Kodaikanal-Style</h3>
+            <p>Inspired by the revered confectionery traditions and cool hill climate recipes of southern hill stations.
+            </p>
+          </div>
+
+          <div class="why-us-card">
+            <div class="why-us-card__icon">✨</div>
+            <h3>Thoughtfully Selected</h3>
+            <p>From single-origin bars to wild raw honey and botanical extracts, every creation is hand-chosen for
+              purity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. PHOTO GALLERY — MASONRY + LIGHTBOX
+         ========================================================================== -->
+    <section id="gallery" class="section-spacing gallery-section" aria-labelledby="galleryHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Visual Moments</span>
+          <h2 id="galleryHeading" class="section-title section-title--dark">The Artisan Gallery</h2>
+          <p class="section-description section-description--dark">
+            Click on any photo to open our high-resolution lightbox viewer.
+          </p>
+        </div>
+
+        <div class="gallery-masonry-grid">
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Dark Chocolate Cashew Bark">
+            <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80"
+              alt="Dark Chocolate Cashew Bark" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Dark Chocolate Cashew Bark</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="White Chocolate Almond Crunch">
+            <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop&q=80"
+              alt="White Chocolate Almond Crunch" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">White Chocolate Almond Crunch</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Wild Forest Honey">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&auto=format&fit=crop&q=80"
+              alt="Wild Forest Honey" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Wild Forest Raw Honey</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Dark Chocolate Almond Clusters">
+            <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop&q=80"
+              alt="Dark Chocolate Almond Clusters" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Almond Crunch Clusters</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Mango Delight Fudge Squares">
+            <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80"
+              alt="Mango Delight Fudge Squares" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Mango Delight Fudge Squares</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Kodai Mountain Tea Harvest">
+            <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80"
+              alt="Kodai Mountain Tea Harvest" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Kodai Mountain Tea</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="Artisan Hill Roast Coffee">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80"
+              alt="Artisan Hill Roast Coffee" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">Artisan Hill Roast Coffee</span>
+            </div>
+          </div>
+
+          <div class="gallery-masonry-item" tabindex="0" role="button" aria-label="A2 Traditional Bilona Cow Ghee">
+            <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&auto=format&fit=crop&q=80"
+              alt="A2 Traditional Bilona Cow Ghee" loading="lazy">
+            <div class="gallery-masonry-item__overlay">
+              <span class="gallery-masonry-item__title">A2 Traditional Bilona Ghee</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         9. TESTIMONIALS (HIDDEN UNTIL CLIENT CONFIRMS GENUINE REVIEWS)
+         Demo placeholder — replace before publishing.
+         ========================================================================== -->
+    <!-- Testimonials section hidden until verified client quotes are approved -->
+
+    <!-- ==========================================================================
+         10. CONTACT / VISIT US
+         ========================================================================== -->
+    <section id="contact" class="section-spacing contact-section" aria-labelledby="contactHeading">
+      <div class="page-width">
+        <div class="section-header">
+          <span class="section-eyebrow">Connect</span>
+          <h2 id="contactHeading" class="section-title">Visit Us in Hosur</h2>
+          <p class="section-description">
+            Experience our handcrafted chocolates and Kodai specialities firsthand. Get in touch with our studio in
+            Hosur or explore our latest batches on Instagram.
+          </p>
+        </div>
+
+        <div class="contact-card-grid">
+          <!-- Telephone Link Card -->
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <h3>Direct Phone Call</h3>
+            <p>Connect with our Hosur studio directly for batch availability and inquiries.</p>
+            <a href="tel:+919363151629" class="btn btn--dark">
+              Call Us: 9363151629
+            </a>
+          </div>
+
+          <!-- Instagram Card -->
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <h3>Follow on Instagram</h3>
+            <p>Discover fresh chocolate bark pours, batch announcements, and stories from our Hosur kitchen.</p>
+            <a href="https://www.instagram.com/tr_homemade_chocolates_hosur/" target="_blank" rel="noopener noreferrer"
+              class="btn btn--outline-dark">
+              Visit Instagram (@tr_homemade_chocolates_hosur)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       11. ACCESSIBLE PRODUCT DETAILS MODAL
+       ========================================================================== -->
+  <div id="productDetailModal" class="product-modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="modalTitle">
+    <div class="product-modal">
+      <button type="button" class="product-modal-close-btn" data-action="close-modal"
+        aria-label="Close product details">✕</button>
+
+      <div class="product-modal-grid">
+        <div class="product-modal-gallery">
+          <div class="product-modal-main-img">
+            <img id="modalMainImage" src="" alt="Product Detail Image">
+          </div>
+          <div class="product-modal-thumbs" id="modalThumbs"></div>
+        </div>
+
+        <div class="product-modal-info">
+          <span class="product-modal-category" id="modalCategory">Category</span>
+          <h2 class="product-modal-title" id="modalTitle">Product Title</h2>
+          <p class="product-modal-desc" id="modalDescription">Detailed approved product description.</p>
+
+          <div class="product-modal-specs">
+            <div class="spec-item">
+              <span class="spec-label">Ingredients & Formulation</span>
+              <span class="spec-value" id="modalIngredients"></span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Net Quantity / Size</span>
+              <span class="spec-value" id="modalSize"></span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Storage Recommendations</span>
+              <span class="spec-value" id="modalStorage"></span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Suggested Ritual & Usage</span>
+              <span class="spec-value" id="modalUsage"></span>
+            </div>
+          </div>
+
+          <div class="product-modal-actions">
+            <button type="button" class="btn btn--dark" data-action="close-modal">
+              ← Back to Collection
+            </button>
+            <span style="font-size: 0.85rem; color: var(--color-cocoa); font-style: italic;">
+              Showcase Item
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       12. SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="page-width">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <img src="./assets/tr-logo.png" alt="TR Logo" width="44" height="44" style="border-radius: 50%;">
+            <span class="footer-brand-name">TR Homemade Chocolates</span>
+          </div>
+          <p class="footer-desc">
+            Authentic Kodaikanal-style homemade chocolates, mountain teas, roast coffee, pure forest honey, cultured
+            ghee, and botanical personal care.
+          </p>
+          <p
+            style="font-family: var(--font-serif); font-style: italic; color: var(--color-accent); margin-top: 0.85rem;">
+            “Real Ingredients. Pure Love.”
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#chocolates">Chocolate Showcase</a></li>
+            <li><a href="#kodai-specials">Kodai Specials</a></li>
+            <li><a href="#products">Full Collection</a></li>
+            <li><a href="#gallery">Photo Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+919363151629">Call: 9363151629</a></li>
+            <li><a href="https://www.instagram.com/tr_homemade_chocolates_hosur/" target="_blank"
+                rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="#contact">Studio & Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">TR Homemade Chocolates</h4>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            Hosur, Tamil Nadu
+          </p>
+          <p class="footer-desc" style="font-size: 0.85rem; color: var(--color-text-muted-on-dark);">
+            Showcase & Catalog Website<br>
+            Homemade with Love
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 TR Homemade Chocolates, Hosur. All rights reserved.</div>
+        <div style="color: var(--color-accent);">Real Ingredients. Pure Love.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
